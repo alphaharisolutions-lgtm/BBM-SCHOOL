@@ -1,0 +1,40 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Project
+        run: npm run build
+
+      # Note: To enable automatic deployment to Hostinger via FTP, 
+      # you need to add your FTP credentials to GitHub Secrets:
+      # Settings -> Secrets and variables -> Actions
+      # Add: FTP_SERVER, FTP_USERNAME, FTP_PASSWORD
+      
+      - name: 🚀 FTP Deploy to Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: 145.79.213.119
+          username: u729386670.bbmschool.com
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          local-dir: ./dist/
+          server-dir: /public_html/
