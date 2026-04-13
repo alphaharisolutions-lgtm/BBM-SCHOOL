@@ -89,16 +89,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   {item.name}
                 </Link>
               ))}
-              <Link to="/admissions" className="ml-4">
-                <Button asChild className="rounded-full bg-[#0a4d29] hover:bg-[#083d21] text-white px-2 py-2 h-11 border-none shadow-lg group transition-all duration-300">
-                  <Link to="/admissions" className="flex items-center gap-3 pl-4 pr-1">
-                    <span className="font-semibold text-sm whitespace-nowrap">Get Admission Now</span>
-                    <div className="size-9 rounded-full bg-white flex items-center justify-center transition-transform group-hover:translate-x-1 shadow-md">
-                      <ArrowRight className="text-[#0a4d29] animate-[pulse_1.5s_infinite] size-5" />
-                    </div>
-                  </Link>
-                </Button>
-              </Link>
+              <Button asChild className="ml-4 rounded-full bg-[#0a4d29] hover:bg-[#083d21] text-white px-2 py-2 h-11 border-none shadow-lg group transition-all duration-300">
+                <Link to="/admissions" className="flex items-center gap-3 pl-4 pr-1">
+                  <span className="font-semibold text-sm whitespace-nowrap">Get Admission Now</span>
+                  <div className="size-9 rounded-full bg-white flex items-center justify-center transition-transform group-hover:translate-x-1 shadow-md">
+                    <ArrowRight className="text-[#0a4d29] animate-[pulse_1.5s_infinite] size-5" />
+                  </div>
+                </Link>
+              </Button>
             </div>
 
             {/* Mobile Menu Toggle */}
@@ -125,16 +123,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   {item.name}
                 </Link>
               ))}
-              <Link to="/admissions" onClick={() => setIsMenuOpen(false)}>
-                <Button asChild className="w-full rounded-2xl bg-[#0a4d29] hover:bg-[#083d21] text-white h-14 border-none shadow-xl group transition-all duration-300">
-                  <Link to="/admissions" onClick={() => setIsMenuOpen(false)} className="flex items-center justify-between px-6">
-                    <span className="font-bold text-lg">Get Admission Now</span>
-                    <div className="size-10 rounded-full bg-white flex items-center justify-center shadow-lg">
-                      <ArrowRight className="text-[#0a4d29] animate-[pulse_1.5s_infinite] size-6" />
-                    </div>
-                  </Link>
-                </Button>
-              </Link>
+              <Button asChild className="w-full rounded-2xl bg-[#0a4d29] hover:bg-[#083d21] text-white h-14 border-none shadow-xl group transition-all duration-300">
+                <Link to="/admissions" onClick={() => setIsMenuOpen(false)} className="flex items-center justify-between px-6">
+                  <span className="font-bold text-lg">Get Admission Now</span>
+                  <div className="size-10 rounded-full bg-white flex items-center justify-center shadow-lg">
+                    <ArrowRight className="text-[#0a4d29] animate-[pulse_1.5s_infinite] size-6" />
+                  </div>
+                </Link>
+              </Button>
             </motion.div>
           )}
         </header>
@@ -200,7 +196,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 mt-16 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-          <p>© 2025 BBM High School. All Rights Reserved.</p>
+          <div className="flex flex-col items-center md:items-start gap-1">
+            <p>© 2025 BBM High School. All Rights Reserved.</p>
+            <p className="text-xs opacity-60">
+              Designed By <a href="https://www.alphahari.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors underline underline-offset-4">Alpha Hari Solutions</a>
+            </p>
+          </div>
           <div className="flex gap-6">
             <Link to="/admin/login" className="hover:text-primary">Admin Login</Link>
             <Link to="#" className="hover:text-primary">Privacy Policy</Link>

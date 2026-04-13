@@ -69,8 +69,11 @@ export function Footer() {
         </div>
       </div>
       
-      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/10 text-center text-xs opacity-60">
-        <p>© 2025 BBM High School. All Rights Reserved. Designed for Excellence.</p>
+      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs opacity-60">
+        <p>© 2025 BBM High School. All Rights Reserved.</p>
+        <p>
+          Designed By <a href="https://www.alphahari.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors underline underline-offset-2">Alpha Hari Solutions</a>
+        </p>
       </div>
     </footer>
   );
