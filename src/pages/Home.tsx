@@ -485,7 +485,7 @@ export default function Home() {
             <div className="relative">
               <div className="aspect-[4/3] rounded-[3rem] overflow-hidden border-8 border-white/5 relative z-10 group-hover:scale-[1.02] transition-transform duration-700 shadow-2xl">
                 <img 
-                  src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80" 
+                  src="/bus.jpeg" 
                   alt="School Bus" 
                   className="w-full h-full object-cover"
                 />
