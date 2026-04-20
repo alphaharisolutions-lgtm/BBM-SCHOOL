@@ -304,6 +304,58 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Staff Section */}
+      <section className="max-w-7xl mx-auto px-4">
+        <div className="text-center space-y-4 mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold">Our Dedicated Staff</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            The backbone of BBM High School—our experienced and passionate team of educators.
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="space-y-6 group"
+          >
+            <div className="aspect-[16/9] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white relative">
+              <img 
+                src="/gents.HEIC" 
+                alt="Gents Staff" 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+              />
+              <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </div>
+            <div className="space-y-2 text-center">
+              <h3 className="text-2xl font-bold">Gentlemen Staff</h3>
+              <div className="w-12 h-1 bg-primary/20 mx-auto rounded-full" />
+            </div>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="space-y-6 group"
+          >
+            <div className="aspect-[16/9] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white relative">
+              <img 
+                src="/ladies staff.HEIC" 
+                alt="Ladies Staff" 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+              />
+              <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </div>
+            <div className="space-y-2 text-center">
+              <h3 className="text-2xl font-bold">Ladies Staff</h3>
+              <div className="w-12 h-1 bg-primary/20 mx-auto rounded-full" />
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Map Section */}
       <section className="max-w-7xl mx-auto px-4">
         <div className="space-y-6 md:space-y-8 text-center mb-10 md:mb-12">
