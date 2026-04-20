@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowRight, BookOpen, Microscope, Monitor, Trophy, Users, Star, CheckCircle2, MapPin } from 'lucide-react';
+import { ArrowRight, BookOpen, Microscope, Monitor, Trophy, Users, Star, CheckCircle2, MapPin, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
@@ -111,44 +111,73 @@ export default function Home() {
             </div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="lg:w-2/5 flex flex-col items-center justify-center scale-75 md:scale-100 pt-12 lg:pt-20"
-          >
-            <div className="relative group">
-              {/* Decorative behind elements */}
-              <div className="absolute -inset-4 bg-yellow-400/30 blur-3xl rounded-full animate-pulse group-hover:bg-yellow-400/40 transition-all duration-1000" />
-
-              <div className="relative space-y-4">
-                {/* Top Block: Admissions */}
-                <div className="bg-[#1e1b4b] px-12 py-6 -rotate-2 shadow-2xl skew-x-[-12deg] relative overflow-hidden">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-yellow-400" />
-                  <h3 className="text-white text-6xl md:text-7xl font-bold tracking-wider skew-x-[12deg] drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                    అడ్మిషన్లు
-                  </h3>
+          <div className="lg:w-2/5 relative flex flex-col items-center justify-center pt-12 lg:pt-20">
+            {/* Small Admissions Badge (Top Right) */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1, duration: 0.8 }}
+              className="absolute -top-16 -right-8 lg:-top-24 lg:-right-16 scale-[0.3] origin-top-right z-20 hidden md:block"
+            >
+              <div className="relative text-center">
+                {/* Decorative festive elements */}
+                <div className="absolute -inset-20 pointer-events-none opacity-50">
+                  <Star className="absolute top-0 left-0 text-yellow-400 rotate-12" size={32} />
+                  <Star className="absolute top-10 right-0 text-yellow-400 -rotate-12" size={24} />
+                  <Sparkles className="absolute bottom-0 left-10 text-yellow-400" size={40} />
                 </div>
 
-                {/* Middle Block: Going on */}
-                <div className="bg-[#f59e0b] px-10 py-4 rotate-1 shadow-xl skew-x-[6deg] -mt-2 ml-6 self-end border-b-4 border-yellow-700">
-                  <h4 className="text-[#1e1b4b] text-4xl md:text-5xl font-black skew-x-[-6deg]">
-                    జరుగుచున్నవి
-                  </h4>
-                </div>
-
-                {/* Bottom Line: Classes */}
-                <div className="text-center pt-6 space-y-1">
-                  <div className="text-primary-foreground/90 text-2xl md:text-3xl font-bold flex items-center justify-center gap-3">
-                    <span className="opacity-70">NURSERY</span>
-                    <span className="text-yellow-400 italic font-serif lowercase text-xl md:text-2xl">to</span>
-                    <span className="opacity-90">CLASS X</span>
+                <div className="relative space-y-0 flex flex-col items-center">
+                  <div className="bg-[#483d8b] px-16 py-8 skew-x-[-15deg] shadow-2xl relative overflow-hidden">
+                    <h3 className="text-white text-9xl font-bold skew-x-[15deg] font-[var(--font-telugu)] tracking-tighter">
+                      అడ్మిషన్లు
+                    </h3>
                   </div>
-                  <div className="h-0.5 w-48 bg-gradient-to-r from-transparent via-yellow-400/50 to-transparent mx-auto" />
+                  <div className="bg-[#ffcc00] px-12 py-6 skew-x-[-3deg] -mt-2 shadow-xl border-b-8 border-[#cc9900]">
+                    <h4 className="text-[#1e1b4b] text-7xl font-black font-[var(--font-telugu)]">
+                      జరుగుచున్నవి
+                    </h4>
+                  </div>
+                  <div className="mt-8">
+                    <p className="text-white text-6xl font-black tracking-tight whitespace-nowrap">
+                      NURSERY <span className="italic font-serif text-5xl">to</span> CLASS X
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+
+            {/* Main IIT & Medical Badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="relative group scale-90 md:scale-110"
+            >
+              <div className="absolute -inset-4 bg-primary/30 blur-3xl rounded-full animate-pulse group-hover:bg-primary/40 transition-all duration-1000" />
+              
+              <div className="relative space-y-0 text-center">
+                <div className="bg-[#1e1b4b] px-10 py-8 border-4 border-yellow-400 shadow-[0_20px_50px_rgba(0,0,0,0.3)] skew-x-[-4deg] relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
+                  {/* Decorative background shapes */}
+                  <div className="absolute -top-10 -left-10 w-32 h-32 bg-yellow-400/10 rounded-full blur-2xl" />
+                  <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-yellow-400/10 rounded-full blur-2xl" />
+                  
+                  <h2 className="text-yellow-400 text-5xl md:text-6xl font-black tracking-tighter skew-x-[4deg] leading-none mb-2">
+                    IIT & MEDICAL
+                  </h2>
+                  <h2 className="text-white text-4xl md:text-5xl font-extrabold tracking-tight skew-x-[4deg] leading-none">
+                    Foundation
+                  </h2>
+                </div>
+                
+                <div className="bg-yellow-400 px-8 py-3 -mt-3 relative z-10 skew-x-[4deg] shadow-lg inline-block self-center border-b-4 border-yellow-600">
+                  <p className="text-primary text-2xl md:text-3xl font-black tracking-widest skew-x-[-4deg]">
+                    CLASS VI <span className="italic font-serif normal-case text-xl font-medium">to</span> X
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
