@@ -37,7 +37,7 @@ export function AIChatbot() {
             <p className="font-bold text-primary">📍 Campus Location:</p>
             <p>BBM High School, Naidupet, Khammam, Telangana - 507001.</p>
             <a 
-              href="https://maps.app.goo.gl/9Z3fX6X9z4z9z9z99" 
+              href="https://share.google/SJWbM6j0hEMwa40Ok" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-block bg-primary text-white px-3 py-1.5 rounded-lg text-xs font-bold no-underline hover:bg-primary/90"
