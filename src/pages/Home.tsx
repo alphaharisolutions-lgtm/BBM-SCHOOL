@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowRight, BookOpen, Microscope, Monitor, Trophy, Users, Star, CheckCircle2, MapPin, Sparkles } from 'lucide-react';
+import { ArrowRight, BookOpen, Microscope, Monitor, Trophy, Users, Star, CheckCircle2, MapPin, Sparkles, Bus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
@@ -14,8 +14,8 @@ export default function Home() {
   const stats = [
     { label: 'Pass Percentage', value: '100%' },
     { label: 'Top SSC Score', value: '583/600' },
-    { label: 'Years of Excellence', value: '15+' },
-    { label: 'Students Scored 550+', value: '50+' },
+    { label: 'Years of Excellence', value: '25+' },
+    { label: 'Students Scored 500+', value: '50%' },
   ];
 
   return (
@@ -155,13 +155,13 @@ export default function Home() {
               className="relative group scale-90 md:scale-110"
             >
               <div className="absolute -inset-4 bg-primary/30 blur-3xl rounded-full animate-pulse group-hover:bg-primary/40 transition-all duration-1000" />
-              
+
               <div className="relative space-y-0 text-center">
                 <div className="bg-[#1e1b4b] px-10 py-8 border-4 border-yellow-400 shadow-[0_20px_50px_rgba(0,0,0,0.3)] skew-x-[-4deg] relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
                   {/* Decorative background shapes */}
                   <div className="absolute -top-10 -left-10 w-32 h-32 bg-yellow-400/10 rounded-full blur-2xl" />
                   <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-yellow-400/10 rounded-full blur-2xl" />
-                  
+
                   <h2 className="text-yellow-400 text-5xl md:text-6xl font-black tracking-tighter skew-x-[4deg] leading-none mb-2">
                     IIT & MEDICAL
                   </h2>
@@ -169,7 +169,7 @@ export default function Home() {
                     Foundation
                   </h2>
                 </div>
-                
+
                 <div className="bg-yellow-400 px-8 py-3 -mt-3 relative z-10 skew-x-[4deg] shadow-lg inline-block self-center border-b-4 border-yellow-600">
                   <p className="text-primary text-2xl md:text-3xl font-black tracking-widest skew-x-[-4deg]">
                     CLASS VI <span className="italic font-serif normal-case text-xl font-medium">to</span> X
@@ -313,7 +313,7 @@ export default function Home() {
                 </div>
                 <div className="space-y-6 flex-1 text-center lg:text-left">
                   <div className="space-y-2">
-                    <h3 className="text-3xl font-bold tracking-tight text-primary">{leader.name}</h3>
+                    <h3 className="text-xl md:text-3xl font-bold tracking-tight text-primary whitespace-nowrap">{leader.name}</h3>
                     <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary font-black uppercase tracking-[0.2em] text-xs">
                       {leader.role}
                     </div>
@@ -341,19 +341,19 @@ export default function Home() {
             The backbone of BBM High School—our experienced and passionate team of educators.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             className="space-y-6 group"
           >
             <div className="aspect-[16/9] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white relative">
-              <img 
-                src="/gents.jpeg" 
-                alt="Gents Staff" 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+              <img
+                src="/gents.jpeg"
+                alt="Gents Staff"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
@@ -363,17 +363,17 @@ export default function Home() {
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             className="space-y-6 group"
           >
             <div className="aspect-[16/9] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white relative">
-              <img 
-                src="/ladies.jpeg" 
-                alt="Ladies Staff" 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+              <img
+                src="/ladies.jpeg"
+                alt="Ladies Staff"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
@@ -389,7 +389,7 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-4">
         <div className="bg-secondary/50 rounded-[3rem] p-12 md:p-20 border border-border overflow-hidden relative">
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
               <div className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-bold uppercase tracking-widest">
@@ -401,7 +401,7 @@ export default function Home() {
               <p className="text-lg text-muted-foreground leading-relaxed">
                 BBM High School takes immense pride in its alumni who have transcended boundaries and are now making significant contributions in prestigious organizations and leading sectors across the globe.
               </p>
-              
+
               <div className="grid grid-cols-2 gap-8 pt-4">
                 <div>
                   <div className="text-3xl font-extrabold text-primary">500+</div>
@@ -415,12 +415,12 @@ export default function Home() {
             </div>
 
             <div className="relative">
-              <div className="grid grid-cols-2 gap-4 md:gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {[
-                  { name: "Srinivas Rao", role: "Software Engineer", company: "Google", image: "https://picsum.photos/seed/alumni1/400/400", batch: "Batch 2010" },
-                  { name: "Ananya Reddy", role: "Sr. Cardiologist", company: "Apollo Hospital", image: "https://picsum.photos/seed/alumni2/400/400", batch: "Batch 2012" },
-                  { name: "Murali Krishna", role: "Scientist", company: "ISRO", image: "https://picsum.photos/seed/alumni3/400/400", batch: "Batch 2008" },
-                  { name: "Priya Darshini", role: "Lead Architect", company: "Microsoft", image: "https://picsum.photos/seed/alumni4/400/400", batch: "Batch 2014" },
+                  { name: "Srinivas Rao", role: "Software Engineer", company: "Google", image: "https://picsum.photos/seed/alumni1/400/400", batch: "2010" },
+                  { name: "Ananya Reddy", role: "Sr. Cardiologist", company: "Apollo Hospital", image: "https://picsum.photos/seed/alumni2/400/400", batch: "2012" },
+                  { name: "Murali Krishna", role: "Scientist", company: "ISRO", image: "https://picsum.photos/seed/alumni3/400/400", batch: "2008" },
+                  { name: "Priya Darshini", role: "Lead Architect", company: "Microsoft", image: "https://picsum.photos/seed/alumni4/400/400", batch: "2014" },
                 ].map((item, i) => (
                   <motion.div
                     key={item.name}
@@ -428,26 +428,76 @@ export default function Home() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 }}
                     viewport={{ once: true }}
-                    className="p-3 md:p-5 bg-white rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 text-center space-y-4 group/card"
+                    className="p-4 bg-white rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 text-center space-y-3 group/card"
                   >
-                    <div className="mx-auto w-16 h-16 md:w-24 md:h-24 rounded-3xl overflow-hidden border-4 border-white shadow-lg group-hover/card:scale-105 transition-transform duration-500">
+                    <div className="mx-auto w-20 h-20 rounded-2xl overflow-hidden border-2 border-white shadow-md group-hover/card:scale-105 transition-transform duration-500">
                       <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                     </div>
                     <div className="space-y-1">
-                      <div className="text-[9px] md:text-[10px] font-black text-slate-400 uppercase tracking-tighter">{item.batch}</div>
-                      <h4 className="text-sm md:text-base font-bold text-slate-900 group-hover/card:text-primary transition-colors leading-tight">{item.name}</h4>
-                      <div className="pt-2 border-t border-slate-50">
-                        <div className="text-[9px] md:text-[10px] font-black text-primary uppercase tracking-widest">{item.role}</div>
-                        <div className="text-[8px] md:text-[9px] font-bold text-slate-400 mt-1 truncate">@ {item.company}</div>
-                      </div>
+                      <h4 className="text-xs md:text-sm font-bold text-slate-900 group-hover/card:text-primary transition-colors truncate">{item.name}</h4>
+                      <div className="text-[8px] md:text-[9px] font-black text-primary uppercase tracking-wider">{item.role}</div>
+                      <div className="text-[8px] font-bold text-slate-400 mt-0.5 truncate">Batch {item.batch}</div>
                     </div>
                   </motion.div>
                 ))}
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Bus Facility Section */}
+      <section className="max-w-7xl mx-auto px-4">
+        <div className="relative group overflow-hidden rounded-[2rem] md:rounded-[4rem] bg-slate-900 text-white p-8 md:p-16">
+          {/* Background effects */}
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-yellow-400/10 rounded-full translate-y-1/2 -translate-x-1/2 blur-[80px]" />
+          
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6 md:space-y-8">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-yellow-400 text-xs font-black uppercase tracking-[0.2em]">
+                <Bus size={14} />
+                <span>Transportation</span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-black leading-tight uppercase font-telugu">
+                Safe & Reliable <br />
+                <span className="text-yellow-400 italic">Bus Facility</span>
+              </h2>
+              <p className="text-slate-400 text-lg leading-relaxed max-w-xl">
+                We provide a well-connected and secure transportation network covering <span className="text-white font-bold">all major areas in Khammam</span>. Our buses are equipped with modern safety features and experienced staff to ensure a comfortable journey for every student.
+              </p>
               
-              {/* Large Section Decorative Orbs */}
-              <div className="absolute -top-24 -left-24 w-64 h-64 bg-yellow-400/5 rounded-full blur-[120px] pointer-events-none" />
-              <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {[
+                  'GPS Tracking System',
+                  'Dedicated Bus Attendants',
+                  'Daily Safety Inspections',
+                  'Wide Coverage Network'
+                ].map((feature) => (
+                  <div key={feature} className="flex items-center gap-3 text-sm font-bold text-slate-200">
+                    <CheckCircle2 className="text-yellow-400 shrink-0" size={18} />
+                    {feature}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="aspect-[4/3] rounded-[3rem] overflow-hidden border-8 border-white/5 relative z-10 group-hover:scale-[1.02] transition-transform duration-700 shadow-2xl">
+                <img 
+                  src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80" 
+                  alt="School Bus" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6 p-6 bg-white/10 backdrop-blur-md rounded-2xl border border-white/10">
+                  <div className="text-yellow-400 font-black text-xl mb-1 italic uppercase">10+ Routes</div>
+                  <div className="text-white/80 text-sm font-medium">Connecting every corner of Khammam city and surrounding suburbs.</div>
+                </div>
+              </div>
+              {/* Decorative elements */}
+              <div className="absolute -top-6 -right-6 w-32 h-32 bg-yellow-400/20 rounded-full blur-3xl" />
+              <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-primary/20 rounded-full blur-3xl" />
             </div>
           </div>
         </div>
