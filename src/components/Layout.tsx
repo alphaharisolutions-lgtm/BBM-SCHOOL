@@ -4,6 +4,7 @@ import { Menu, X, Phone, MapPin, Facebook, Instagram, Twitter, ArrowRight } from
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { WhatsAppWidget } from './WhatsAppWidget';
+import { AIChatbot } from './AIChatbot';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -210,6 +211,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
       </footer>
       <WhatsAppWidget />
+      <AIChatbot />
     </div>
   );
 }
