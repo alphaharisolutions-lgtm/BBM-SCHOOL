@@ -252,14 +252,14 @@ export default function Home() {
           {[
             {
               name: 'Gurram Kantha Rao',
-              role: 'Chairman',
-              image: '/IMG_7399.JPG',
+              role: 'Director',
+              image: '/sir.jpeg',
               message: 'Our goal is to provide a nurturing environment where every child can excel academically and grow into a responsible citizen.'
             },
             {
               name: 'Gurram Nagamani',
-              role: 'Director',
-              image: 'https://picsum.photos/seed/director/600/600',
+              role: 'Correspondent',
+              image: '/madam.jpeg',
               message: 'We believe in a holistic approach to education, balancing academic rigor with character building and modern values.'
             }
           ].map((leader, i) => (
