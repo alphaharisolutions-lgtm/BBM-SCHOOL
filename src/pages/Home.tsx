@@ -385,6 +385,74 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Alumni Section */}
+      <section className="max-w-7xl mx-auto px-4">
+        <div className="bg-secondary/50 rounded-[3rem] p-12 md:p-20 border border-border overflow-hidden relative">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <div className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-bold uppercase tracking-widest">
+                Wall of Fame
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold leading-tight uppercase font-telugu">
+                Our Students are <br /> <span className="text-primary italic">Shaping the World</span>
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                BBM High School takes immense pride in its alumni who have transcended boundaries and are now making significant contributions in prestigious organizations and leading sectors across the globe.
+              </p>
+              
+              <div className="grid grid-cols-2 gap-8 pt-4">
+                <div>
+                  <div className="text-3xl font-extrabold text-primary">500+</div>
+                  <div className="text-sm text-muted-foreground uppercase font-black opacity-60">Engineers & Doctors</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-extrabold text-primary">100+</div>
+                  <div className="text-sm text-muted-foreground uppercase font-black opacity-60">Civil Servants</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="grid grid-cols-2 gap-4 md:gap-6">
+                {[
+                  { name: "Srinivas Rao", role: "Software Engineer", company: "Google", image: "https://picsum.photos/seed/alumni1/400/400", batch: "Batch 2010" },
+                  { name: "Ananya Reddy", role: "Sr. Cardiologist", company: "Apollo Hospital", image: "https://picsum.photos/seed/alumni2/400/400", batch: "Batch 2012" },
+                  { name: "Murali Krishna", role: "Scientist", company: "ISRO", image: "https://picsum.photos/seed/alumni3/400/400", batch: "Batch 2008" },
+                  { name: "Priya Darshini", role: "Lead Architect", company: "Microsoft", image: "https://picsum.photos/seed/alumni4/400/400", batch: "Batch 2014" },
+                ].map((item, i) => (
+                  <motion.div
+                    key={item.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    viewport={{ once: true }}
+                    className="p-3 md:p-5 bg-white rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 text-center space-y-4 group/card"
+                  >
+                    <div className="mx-auto w-16 h-16 md:w-24 md:h-24 rounded-3xl overflow-hidden border-4 border-white shadow-lg group-hover/card:scale-105 transition-transform duration-500">
+                      <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                    </div>
+                    <div className="space-y-1">
+                      <div className="text-[9px] md:text-[10px] font-black text-slate-400 uppercase tracking-tighter">{item.batch}</div>
+                      <h4 className="text-sm md:text-base font-bold text-slate-900 group-hover/card:text-primary transition-colors leading-tight">{item.name}</h4>
+                      <div className="pt-2 border-t border-slate-50">
+                        <div className="text-[9px] md:text-[10px] font-black text-primary uppercase tracking-widest">{item.role}</div>
+                        <div className="text-[8px] md:text-[9px] font-bold text-slate-400 mt-1 truncate">@ {item.company}</div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+              
+              {/* Large Section Decorative Orbs */}
+              <div className="absolute -top-24 -left-24 w-64 h-64 bg-yellow-400/5 rounded-full blur-[120px] pointer-events-none" />
+              <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Map Section */}
       <section className="max-w-7xl mx-auto px-4">
         <div className="space-y-6 md:space-y-8 text-center mb-10 md:mb-12">
