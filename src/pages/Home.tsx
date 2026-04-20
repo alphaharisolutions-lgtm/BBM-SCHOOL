@@ -322,7 +322,7 @@ export default function Home() {
           >
             <div className="aspect-[16/9] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white relative">
               <img 
-                src="/gents.HEIC" 
+                src="/gents.jpeg" 
                 alt="Gents Staff" 
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
               />
@@ -342,7 +342,7 @@ export default function Home() {
           >
             <div className="aspect-[16/9] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white relative">
               <img 
-                src="/ladies staff.HEIC" 
+                src="/ladies.jpeg" 
                 alt="Ladies Staff" 
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
               />
