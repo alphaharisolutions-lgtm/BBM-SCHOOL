@@ -265,29 +265,39 @@ export default function Home() {
           ].map((leader, i) => (
             <motion.div
               key={leader.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.2 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              whileHover={{ y: -10 }}
+              transition={{ delay: i * 0.2, duration: 0.5 }}
               viewport={{ once: true }}
-              className="flex flex-col md:flex-row gap-8 items-center md:items-start text-center md:text-left"
+              className="relative group bg-white/50 backdrop-blur-sm rounded-[3rem] p-8 border border-white/40 shadow-xl hover:shadow-2xl transition-all duration-500"
             >
-              <div className="w-48 h-48 md:w-56 md:h-56 shrink-0 rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white">
-                <img
-                  src={leader.image}
-                  alt={leader.name}
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <div className="space-y-4">
-                <div className="space-y-1">
-                  <h3 className="text-2xl md:text-3xl font-bold">{leader.name}</h3>
-                  <p className="text-primary font-bold uppercase tracking-widest text-sm">{leader.role}</p>
+              <div className="flex flex-col lg:flex-row gap-8 items-center lg:items-start">
+                <div className="w-48 h-60 md:w-56 md:h-72 shrink-0 rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white relative">
+                  <img
+                    src={leader.image}
+                    alt={leader.name}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
-                <p className="text-muted-foreground leading-relaxed italic">
-                  "{leader.message}"
-                </p>
-                <div className="w-12 h-1 bg-primary/20 mx-auto md:mx-0 rounded-full" />
+                <div className="space-y-6 flex-1 text-center lg:text-left">
+                  <div className="space-y-2">
+                    <h3 className="text-3xl font-bold tracking-tight text-primary">{leader.name}</h3>
+                    <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary font-black uppercase tracking-[0.2em] text-xs">
+                      {leader.role}
+                    </div>
+                  </div>
+                  <div className="relative">
+                    <span className="absolute -top-4 -left-2 text-6xl text-primary/10 font-serif">"</span>
+                    <p className="text-muted-foreground leading-relaxed italic text-lg px-2">
+                      {leader.message}
+                    </p>
+                    <span className="absolute -bottom-8 -right-2 text-6xl text-primary/10 font-serif">"</span>
+                  </div>
+                  <div className="w-16 h-1.5 bg-gradient-to-r from-primary/40 to-transparent mx-auto lg:mx-0 rounded-full mt-4" />
+                </div>
               </div>
             </motion.div>
           ))}
