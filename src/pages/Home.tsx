@@ -14,7 +14,7 @@ export default function Home() {
   const stats = [
     { label: 'Pass Percentage', value: '100%' },
     { label: 'Top SSC Score', value: '583/600' },
-    { label: 'Years of Excellence', value: '25+' },
+    { label: 'Years of Excellence', value: '30+' },
     { label: 'Students Scored 500+', value: '50%' },
   ];
 
@@ -358,7 +358,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
             <div className="space-y-2 text-center">
-              <h3 className="text-2xl font-bold">Gentlemen Staff</h3>
+              <h3 className="text-2xl font-bold">Gents Staff</h3>
               <div className="w-12 h-1 bg-primary/20 mx-auto rounded-full" />
             </div>
           </motion.div>
@@ -452,7 +452,7 @@ export default function Home() {
           {/* Background effects */}
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-yellow-400/10 rounded-full translate-y-1/2 -translate-x-1/2 blur-[80px]" />
-          
+
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 md:space-y-8">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-yellow-400 text-xs font-black uppercase tracking-[0.2em]">
@@ -466,7 +466,7 @@ export default function Home() {
               <p className="text-slate-400 text-lg leading-relaxed max-w-xl">
                 We provide a well-connected and secure transportation network covering <span className="text-white font-bold">all major areas in Khammam</span>. Our buses are equipped with modern safety features and experienced staff to ensure a comfortable journey for every student.
               </p>
-              
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
                   'GPS Tracking System',
@@ -484,9 +484,9 @@ export default function Home() {
 
             <div className="relative">
               <div className="aspect-[4/3] rounded-[3rem] overflow-hidden border-8 border-white/5 relative z-10 group-hover:scale-[1.02] transition-transform duration-700 shadow-2xl">
-                <img 
-                  src="/bus.jpeg" 
-                  alt="School Bus" 
+                <img
+                  src="/bus.jpeg"
+                  alt="School Bus"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />

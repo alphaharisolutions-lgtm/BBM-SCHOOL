@@ -223,7 +223,7 @@ export default function About() {
               <div className="text-sm opacity-60 uppercase tracking-widest mt-2">Successful Alumni</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-yellow-400">25+</div>
+              <div className="text-4xl font-bold text-yellow-400">30+</div>
               <div className="text-sm opacity-60 uppercase tracking-widest mt-2">Years of Excellence</div>
             </div>
           </div>
