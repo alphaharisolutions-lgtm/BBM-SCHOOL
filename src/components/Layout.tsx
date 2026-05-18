@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
-import { motion } from 'motion/react';
-import { Menu, X, Phone, MapPin, Facebook, Instagram, Twitter, ArrowRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Menu, X, Phone, MapPin, Facebook, Instagram, Twitter, ArrowRight, Star, Sparkles } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { WhatsAppWidget } from './WhatsAppWidget';
@@ -9,6 +9,7 @@ import { AIChatbot } from './AIChatbot';
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showSplash, setShowSplash] = useState(true);
   const location = useLocation();
 
   useEffect(() => {
@@ -32,6 +33,110 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen flex flex-col font-sans selection:bg-primary selection:text-primary-foreground">
+      <AnimatePresence>
+        {showSplash && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.1 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 z-[100] bg-gradient-to-br from-indigo-950 via-slate-900 to-purple-950 backdrop-blur-xl flex flex-col items-center justify-center p-4 overflow-hidden"
+          >
+            {/* Celebration items */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+              {/* Stars & Sparkles */}
+              <div className="absolute top-10 left-10 text-yellow-400 animate-bounce"><Star size={32} fill="currentColor" /></div>
+              <div className="absolute top-20 right-20 text-yellow-300 animate-pulse"><Sparkles size={40} /></div>
+              <div className="absolute bottom-20 left-20 text-pink-500 animate-pulse"><Sparkles size={32} /></div>
+              <div className="absolute bottom-10 right-10 text-blue-400 animate-bounce"><Star size={24} fill="currentColor" /></div>
+              
+              <div className="absolute top-1/2 left-5 text-emerald-400 animate-pulse delay-700"><Sparkles size={24} /></div>
+              <div className="absolute top-1/3 right-10 text-purple-400 animate-bounce delay-300"><Star size={20} fill="currentColor" /></div>
+              <div className="absolute bottom-1/2 right-5 text-orange-400 animate-pulse delay-500"><Sparkles size={28} /></div>
+              <div className="absolute top-5 right-1/3 text-amber-400 animate-bounce delay-1000"><Star size={16} fill="currentColor" /></div>
+              
+              {/* Confetti shapes */}
+              <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-red-500 rounded-full animate-ping" />
+              <div className="absolute top-1/3 right-1/4 w-4 h-4 bg-yellow-500 rotate-45 animate-ping delay-300" />
+              <div className="absolute bottom-1/4 right-1/3 w-5 h-2 bg-green-500 rotate-12 animate-bounce delay-500" />
+              <div className="absolute bottom-1/3 left-1/3 w-2 h-4 bg-blue-500 -rotate-12 animate-bounce delay-100" />
+              
+              <div className="absolute top-10 right-1/2 w-3 h-3 bg-pink-500 rounded-full animate-ping delay-200" />
+              <div className="absolute bottom-10 left-1/2 w-4 h-4 bg-purple-500 rotate-45 animate-ping delay-600" />
+              <div className="absolute top-2/3 left-[15%] w-6 h-1 bg-orange-500 rotate-45 animate-bounce delay-400" />
+              <div className="absolute top-1/5 right-[15%] w-2 h-2 bg-cyan-500 rounded-full animate-ping delay-800" />
+              
+              {/* More scattered items */}
+              <div className="absolute top-[15%] left-[10%] text-white/50 animate-pulse"><Star size={12} fill="currentColor" /></div>
+              <div className="absolute top-[45%] right-[15%] text-white/50 animate-pulse delay-300"><Star size={10} fill="currentColor" /></div>
+              <div className="absolute bottom-[15%] left-[15%] text-white/50 animate-pulse delay-600"><Star size={14} fill="currentColor" /></div>
+              <div className="absolute bottom-[35%] right-[25%] text-white/50 animate-pulse delay-900"><Star size={12} fill="currentColor" /></div>
+            </div>
+
+            <div className="relative max-w-6xl w-full flex flex-col items-center gap-10">
+              {/* Glowing background */}
+              <div className="absolute -inset-10 bg-gradient-to-tr from-violet-600/20 via-pink-600/20 to-amber-500/20 opacity-30 blur-3xl" />
+
+              {/* Cross mark */}
+              <motion.button
+                initial={{ opacity: 0, scale: 0.5, y: -20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.5, type: "spring" }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => setShowSplash(false)}
+                className="absolute -top-6 right-4 text-white hover:text-yellow-400 transition-all duration-300 bg-white/5 hover:bg-white/10 p-4 rounded-full backdrop-blur-md border border-white/10 hover:border-white/30 shadow-2xl group"
+              >
+                <X size={28} className="transition-transform group-hover:rotate-90" />
+              </motion.button>
+
+              {/* Book Container */}
+              <div className="flex flex-col md:flex-row gap-0 w-full justify-center relative z-10 max-w-4xl" style={{ perspective: 1200 }}>
+                {/* Left Page */}
+                <motion.div
+                  initial={{ opacity: 0, x: -50, rotateY: 35 }}
+                  animate={{ opacity: 1, x: 0, rotateY: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  whileHover={{ scale: 1.01 }}
+                  className="w-full md:w-1/2 relative aspect-[4/5] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.8)] border border-white/10 bg-black/40 group cursor-pointer"
+                  style={{ transformOrigin: "right center" }}
+                >
+                  <img
+                    src="/preload1 (1).jpeg"
+                    alt="Preload 1"
+                    className="w-full h-full object-contain"
+                  />
+                  {/* Inner shadow for spine effect on the right edge of left page */}
+                  <div className="absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-black/50 to-transparent" />
+                </motion.div>
+
+                {/* Right Page */}
+                <motion.div
+                  initial={{ opacity: 0, x: 50, rotateY: -35 }}
+                  animate={{ opacity: 1, x: 0, rotateY: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  whileHover={{ scale: 1.01 }}
+                  className="w-full md:w-1/2 relative aspect-[4/5] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.8)] border border-white/10 bg-black/40 group cursor-pointer"
+                  style={{ transformOrigin: "left center" }}
+                >
+                  <img
+                    src="/preload1 (2).jpeg"
+                    alt="Preload 2"
+                    className="w-full h-full object-contain"
+                  />
+                  {/* Inner shadow for spine effect on the left edge of right page */}
+                  <div className="absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-black/50 to-transparent" />
+                </motion.div>
+              </div>
+              
+              <div className="text-white/40 text-sm font-medium animate-pulse tracking-widest uppercase">
+                Click the X to enter the site
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <div className="fixed top-0 left-0 right-0 z-50">
         {/* Top Bar */}
         <div className={`bg-primary text-primary-foreground px-4 text-[10px] sm:text-sm transition-all duration-300 overflow-hidden ${isScrolled ? 'h-0 opacity-0' : 'h-8 sm:h-10 opacity-100 py-2'

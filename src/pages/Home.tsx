@@ -13,9 +13,9 @@ export default function Home() {
 
   const stats = [
     { label: 'Pass Percentage', value: '100%' },
-    { label: 'Top SSC Score', value: '583/600' },
+    { label: 'Top SSC Score (2026)', value: '586/600' },
     { label: 'Years of Excellence', value: '30+' },
-    { label: 'Students Scored 500+', value: '50%' },
+    { label: 'Students Scored 500+', value: '80%' },
   ];
 
   return (
@@ -117,7 +117,7 @@ export default function Home() {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 1, duration: 0.8 }}
-              className="absolute -top-16 -right-8 lg:-top-24 lg:-right-16 scale-[0.3] origin-top-right z-20 hidden md:block"
+              className="absolute -top-10 -right-8 lg:-top-16 lg:-right-16 scale-[0.3] origin-top-right z-20 hidden md:block"
             >
               <div className="relative text-center">
                 {/* Decorative festive elements */}
@@ -127,21 +127,29 @@ export default function Home() {
                   <Sparkles className="absolute bottom-0 left-10 text-yellow-400" size={40} />
                 </div>
 
-                <div className="relative space-y-0 flex flex-col items-center">
-                  <div className="bg-[#483d8b] px-16 py-8 skew-x-[-15deg] shadow-2xl relative overflow-hidden">
-                    <h3 className="text-white text-9xl font-bold skew-x-[15deg] font-[var(--font-telugu)] tracking-tighter">
-                      అడ్మిషన్లు
-                    </h3>
-                  </div>
-                  <div className="bg-[#ffcc00] px-12 py-6 skew-x-[-3deg] -mt-2 shadow-xl border-b-8 border-[#cc9900]">
-                    <h4 className="text-[#1e1b4b] text-7xl font-black font-[var(--font-telugu)]">
-                      జరుగుచున్నవి
-                    </h4>
-                  </div>
-                  <div className="mt-8">
-                    <p className="text-white text-6xl font-black tracking-tight whitespace-nowrap">
-                      NURSERY <span className="italic font-serif text-5xl">to</span> CLASS X
-                    </p>
+                <div className="relative space-y-6 flex flex-col items-center">
+                  {/* Glowing background effect */}
+                  <div className="absolute -inset-6 bg-gradient-to-tr from-violet-600 via-pink-600 to-amber-500 opacity-60 blur-3xl animate-pulse" />
+                  
+                  <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-[3rem] p-12 flex flex-col items-center space-y-6 shadow-2xl">
+                    <div className="bg-gradient-to-r from-violet-600 to-indigo-600 px-16 py-8 rounded-2xl shadow-lg transform -rotate-1 relative overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                      <h3 className="text-white text-9xl font-extrabold font-[var(--font-telugu)] tracking-tighter relative z-10">
+                        అడ్మిషన్లు
+                      </h3>
+                    </div>
+                    
+                    <div className="bg-gradient-to-r from-amber-400 to-orange-500 px-12 py-6 rounded-2xl shadow-lg transform rotate-1 -mt-4 relative overflow-hidden border-b-4 border-orange-700">
+                      <h4 className="text-slate-900 text-7xl font-black font-[var(--font-telugu)] relative z-10">
+                        జరుగుచున్నవి
+                      </h4>
+                    </div>
+                    
+                    <div className="mt-6">
+                      <p className="text-white text-6xl font-black tracking-tight whitespace-nowrap bg-white/5 px-8 py-3 rounded-full border border-white/10 backdrop-blur-sm">
+                        NURSERY <span className="italic font-serif text-5xl text-amber-300">to</span> CLASS X
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -152,7 +160,7 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="relative group scale-90 md:scale-110"
+              className="relative group scale-90 md:scale-110 mt-16"
             >
               <div className="absolute -inset-4 bg-primary/30 blur-3xl rounded-full animate-pulse group-hover:bg-primary/40 transition-all duration-1000" />
 
@@ -257,13 +265,25 @@ export default function Home() {
               <Button className="w-full sm:w-auto rounded-full px-8 h-12 mt-4">Learn More About Programs</Button>
             </Link>
           </div>
-          <div className="lg:w-1/2 relative min-h-[300px] md:min-h-[400px]">
-            <img
-              src="https://picsum.photos/seed/iit-foundation/800/800"
-              alt="Students Studying"
-              className="absolute inset-0 w-full h-full object-cover"
-              referrerPolicy="no-referrer"
-            />
+          <div className="lg:w-1/2 flex flex-col gap-4 p-4 lg:p-6 min-h-[400px]">
+            <div className="flex-1 relative rounded-3xl overflow-hidden shadow-lg group">
+              <img
+                src="/iit_coaching.png"
+                alt="IIT Foundation Coaching"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute bottom-4 left-4 text-white font-bold text-lg">IIT Foundation</div>
+            </div>
+            <div className="flex-1 relative rounded-3xl overflow-hidden shadow-lg group">
+              <img
+                src="/medical_coaching.png"
+                alt="Medical Foundation Coaching"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute bottom-4 left-4 text-white font-bold text-lg">Medical Foundation</div>
+            </div>
           </div>
         </div>
       </section>
@@ -453,7 +473,7 @@ export default function Home() {
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-yellow-400/10 rounded-full translate-y-1/2 -translate-x-1/2 blur-[80px]" />
 
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-12 items-center">
             <div className="space-y-6 md:space-y-8">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-yellow-400 text-xs font-black uppercase tracking-[0.2em]">
                 <Bus size={14} />
@@ -483,16 +503,16 @@ export default function Home() {
             </div>
 
             <div className="relative">
-              <div className="aspect-[4/3] rounded-[3rem] overflow-hidden border-8 border-white/5 relative z-10 group-hover:scale-[1.02] transition-transform duration-700 shadow-2xl">
+              <div className="w-full rounded-[3rem] overflow-hidden border-8 border-white/5 relative z-10 group-hover:scale-[1.02] transition-transform duration-700 shadow-2xl">
                 <img
                   src="/bus.jpeg"
                   alt="School Bus"
-                  className="w-full h-full object-cover"
+                  className="w-full h-auto"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6 p-6 bg-white/10 backdrop-blur-md rounded-2xl border border-white/10">
-                  <div className="text-yellow-400 font-black text-xl mb-1 italic uppercase">10+ Routes</div>
-                  <div className="text-white/80 text-sm font-medium">Connecting every corner of Khammam city and surrounding suburbs.</div>
+                <div className="absolute bottom-4 left-4 max-w-[260px] p-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/10">
+                  <div className="text-yellow-400 font-black text-lg mb-1 italic uppercase">10+ Routes</div>
+                  <div className="text-white/80 text-xs font-medium">Connecting every corner of Khammam city and surrounding suburbs.</div>
                 </div>
               </div>
               {/* Decorative elements */}
