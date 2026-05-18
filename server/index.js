@@ -7,7 +7,13 @@ const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Helper to log errors to the file we can read
+// Helper to log messages to the file we can read
+function log(message) {
+  const logMessage = `[${new Date().toISOString()}] ${message}\n`;
+  fs.appendFileSync(path.join(__dirname, '../server_debug.log'), logMessage);
+  console.log(message);
+}
+
 function logError(message, error) {
   const logMessage = `[${new Date().toISOString()}] ${message}: ${error.message}\n${error.stack}\n`;
   fs.appendFileSync(path.join(__dirname, '../server_debug.log'), logMessage);
@@ -17,6 +23,12 @@ function logError(message, error) {
 app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Log every request to see if it reaches the server
+app.use((req, res, next) => {
+  log(`Request received: ${req.method} ${req.url}`);
+  next();
+});
 
 // Ensure directories exist
 const dataDir = path.join(__dirname, 'data');
@@ -70,6 +82,7 @@ app.get('/api/results', (req, res) => {
 
 app.post('/api/results', upload.single('photo'), (req, res) => {
   try {
+    log(`Saving result for ${req.body.name}`);
     const results = getResults();
     const newResult = {
       id: Date.now().toString(),
@@ -80,6 +93,7 @@ app.post('/api/results', upload.single('photo'), (req, res) => {
     };
     results.unshift(newResult);
     saveResults(results);
+    log(`Result saved with ID: ${newResult.id}`);
     res.status(201).json(newResult);
   } catch (error) {
     logError('Error saving result', error);
@@ -136,6 +150,7 @@ app.get('/api/gallery', (req, res) => {
 
 app.post('/api/gallery', upload.single('image'), (req, res) => {
   try {
+    log(`Saving gallery item: ${req.body.title}`);
     const gallery = getGallery();
     const newItem = {
       id: Date.now().toString(),
@@ -171,6 +186,7 @@ app.use(express.static(path.join(__dirname, '../dist')));
 // Fallback to index.html for SPA routing
 app.use((req, res) => {
   if (req.url.startsWith('/api')) {
+    log(`API Route not found: ${req.method} ${req.url}`);
     return res.status(404).json({ error: 'API route not found' });
   }
   
@@ -183,5 +199,5 @@ app.use((req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  log(`Server running on port ${PORT}`);
 });
