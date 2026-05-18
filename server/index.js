@@ -7,6 +7,13 @@ const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Helper to log errors to the file we can read
+function logError(message, error) {
+  const logMessage = `[${new Date().toISOString()}] ${message}: ${error.message}\n${error.stack}\n`;
+  fs.appendFileSync(path.join(__dirname, '../server_debug.log'), logMessage);
+  console.error(message, error);
+}
+
 app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -53,28 +60,43 @@ const upload = multer({ storage });
 
 // Routes
 app.get('/api/results', (req, res) => {
-  res.json(getResults());
+  try {
+    res.json(getResults());
+  } catch (error) {
+    logError('Error getting results', error);
+    res.status(500).json({ error: error.message });
+  }
 });
 
 app.post('/api/results', upload.single('photo'), (req, res) => {
-  const results = getResults();
-  const newResult = {
-    id: Date.now().toString(),
-    name: req.body.name,
-    marks: req.body.marks,
-    year: req.body.year,
-    photo: req.file ? `/uploads/${req.file.filename}` : 'https://picsum.photos/seed/student/200/200'
-  };
-  results.unshift(newResult);
-  saveResults(results);
-  res.status(201).json(newResult);
+  try {
+    const results = getResults();
+    const newResult = {
+      id: Date.now().toString(),
+      name: req.body.name,
+      marks: req.body.marks,
+      year: req.body.year,
+      photo: req.file ? `/uploads/${req.file.filename}` : 'https://picsum.photos/seed/student/200/200'
+    };
+    results.unshift(newResult);
+    saveResults(results);
+    res.status(201).json(newResult);
+  } catch (error) {
+    logError('Error saving result', error);
+    res.status(500).json({ error: error.message });
+  }
 });
 
 app.delete('/api/results/:id', (req, res) => {
-  const results = getResults();
-  const filtered = results.filter(r => r.id !== req.params.id);
-  saveResults(filtered);
-  res.json({ success: true });
+  try {
+    const results = getResults();
+    const filtered = results.filter(r => r.id !== req.params.id);
+    saveResults(filtered);
+    res.json({ success: true });
+  } catch (error) {
+    logError('Error deleting result', error);
+    res.status(500).json({ error: error.message });
+  }
 });
 
 app.put('/api/results/:id', upload.single('photo'), (req, res) => {
@@ -98,34 +120,49 @@ app.put('/api/results/:id', upload.single('photo'), (req, res) => {
     saveResults(results);
     res.json(updatedResult);
   } catch (error) {
-    console.error('Error updating result:', error);
+    logError('Error updating result', error);
     res.status(500).json({ error: error.message });
   }
 });
 
 app.get('/api/gallery', (req, res) => {
-  res.json(getGallery());
+  try {
+    res.json(getGallery());
+  } catch (error) {
+    logError('Error getting gallery', error);
+    res.status(500).json({ error: error.message });
+  }
 });
 
 app.post('/api/gallery', upload.single('image'), (req, res) => {
-  const gallery = getGallery();
-  const newItem = {
-    id: Date.now().toString(),
-    title: req.body.title,
-    category: req.body.category,
-    imageUrl: req.file ? `/uploads/${req.file.filename}` : 'https://picsum.photos/seed/gallery/800/600',
-    createdAt: new Date().toISOString()
-  };
-  gallery.unshift(newItem);
-  saveGallery(gallery);
-  res.status(201).json(newItem);
+  try {
+    const gallery = getGallery();
+    const newItem = {
+      id: Date.now().toString(),
+      title: req.body.title,
+      category: req.body.category,
+      imageUrl: req.file ? `/uploads/${req.file.filename}` : 'https://picsum.photos/seed/gallery/800/600',
+      createdAt: new Date().toISOString()
+    };
+    gallery.unshift(newItem);
+    saveGallery(gallery);
+    res.status(201).json(newItem);
+  } catch (error) {
+    logError('Error saving gallery item', error);
+    res.status(500).json({ error: error.message });
+  }
 });
 
 app.delete('/api/gallery/:id', (req, res) => {
-  const gallery = getGallery();
-  const filtered = gallery.filter(g => g.id !== req.params.id);
-  saveGallery(filtered);
-  res.json({ success: true });
+  try {
+    const gallery = getGallery();
+    const filtered = gallery.filter(g => g.id !== req.params.id);
+    saveGallery(filtered);
+    res.json({ success: true });
+  } catch (error) {
+    logError('Error deleting gallery item', error);
+    res.status(500).json({ error: error.message });
+  }
 });
 
 // Serve static frontend files from the 'dist' directory
@@ -142,7 +179,6 @@ app.use((req, res) => {
     return res.sendFile(indexPath);
   }
   
-  // Fallback for development (Vite serves the frontend)
   res.status(404).send('Not Found');
 });
 
