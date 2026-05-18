@@ -38,6 +38,8 @@ export default function Dashboard() {
   const [editingResult, setEditingResult] = useState<Result | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isAddResultOpen, setIsAddResultOpen] = useState(false);
+  const [isAddGalleryOpen, setIsAddGalleryOpen] = useState(false);
 
   useEffect(() => {
     if (!storage.isAdminLoggedIn()) {
@@ -299,7 +301,7 @@ export default function Dashboard() {
               <Card>
                 <CardHeader className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <CardTitle>SSC Toppers Management</CardTitle>
-                  <Dialog>
+                  <Dialog open={isAddResultOpen} onOpenChange={setIsAddResultOpen}>
                     <DialogTrigger asChild>
                       <Button className="gap-2 w-full sm:w-auto">
                         <Plus size={18} /> Add Topper
@@ -325,6 +327,7 @@ export default function Dashboard() {
                               photo: '',
                             }, file);
                             toast.success('Topper added successfully');
+                            setIsAddResultOpen(false);
                             loadData();
                           } catch (error) {
                             toast.error('Failed to save result');
@@ -486,7 +489,7 @@ export default function Dashboard() {
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between">
                   <CardTitle>Gallery Management</CardTitle>
-                  <Dialog>
+                  <Dialog open={isAddGalleryOpen} onOpenChange={setIsAddGalleryOpen}>
                     <DialogTrigger asChild>
                       <Button className="gap-2">
                         <Plus size={18} /> Add Image
@@ -507,7 +510,7 @@ export default function Dashboard() {
                             toast.error('Please select an image');
                             return;
                           }
-
+ 
                           try {
                             setIsUploading(true);
                             await storage.saveGalleryItem({
@@ -516,6 +519,7 @@ export default function Dashboard() {
                               category: formData.get('category') as any,
                             }, file);
                             toast.success('Image added to gallery');
+                            setIsAddGalleryOpen(false);
                             loadData();
                           } catch (error) {
                             toast.error('Failed to upload image');
