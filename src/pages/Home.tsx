@@ -510,7 +510,7 @@ export default function Home() {
                   className="w-full h-auto"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-4 max-w-[260px] p-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/10">
+                <div className="relative md:absolute md:bottom-4 md:left-4 max-w-[260px] mx-auto mb-4 md:mb-0 p-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/10">
                   <div className="text-yellow-400 font-black text-lg mb-1 italic uppercase">10+ Routes</div>
                   <div className="text-white/80 text-xs font-medium">Connecting every corner of Khammam city and surrounding suburbs.</div>
                 </div>
