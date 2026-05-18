@@ -91,9 +91,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <div className="absolute -inset-10 bg-gradient-to-tr from-violet-600/20 via-pink-600/20 to-amber-500/20 opacity-30 blur-3xl" />
 
               {/* Admissions Text */}
-              <div className="text-center space-y-1 mb-2 relative z-10">
-                <h2 className="text-xl md:text-3xl font-black text-yellow-400 uppercase tracking-wider">Admissions are in Progress</h2>
-                <p className="text-base md:text-xl font-bold text-white">2026 - 27</p>
+              <div className="text-center space-y-2 mb-6 relative z-10">
+                <h2 className="text-2xl md:text-5xl font-black text-yellow-400 uppercase tracking-wider">Admissions are in Progress</h2>
+                <p className="text-lg md:text-2xl font-bold text-white">2026 - 27</p>
               </div>
 
               {/* Book Container */}
@@ -104,7 +104,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   animate={{ opacity: 1, x: 0, rotateY: 0 }}
                   transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   whileHover={{ scale: 1.01 }}
-                  className="w-1/2 relative aspect-[4/5] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.8)] border border-white/10 bg-black/40 group cursor-pointer"
+                  className="w-1/2 relative aspect-[4/5] max-h-[65vh] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.8)] border border-white/10 bg-transparent group cursor-pointer"
                   style={{ transformOrigin: "right center" }}
                 >
                   <img
@@ -112,8 +112,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     alt="Preload 1"
                     className="w-full h-full object-contain"
                   />
-                  {/* Inner shadow for spine effect on the right edge of left page */}
-                  <div className="absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-black/50 to-transparent" />
                 </motion.div>
 
                 {/* Right Page */}
@@ -122,7 +120,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   animate={{ opacity: 1, x: 0, rotateY: 0 }}
                   transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   whileHover={{ scale: 1.01 }}
-                  className="w-1/2 relative aspect-[4/5] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.8)] border border-white/10 bg-black/40 group cursor-pointer"
+                  className="w-1/2 relative aspect-[4/5] max-h-[65vh] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.8)] border border-white/10 bg-transparent group cursor-pointer"
                   style={{ transformOrigin: "left center" }}
                 >
                   <img
@@ -130,12 +128,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     alt="Preload 2"
                     className="w-full h-full object-contain"
                   />
-                  {/* Inner shadow for spine effect on the left edge of right page */}
-                  <div className="absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-black/50 to-transparent" />
                 </motion.div>
               </div>
               
-              <div className="text-white/40 text-sm font-medium animate-pulse tracking-widest uppercase">
+              <div className="text-white/50 text-sm md:text-base font-medium animate-pulse tracking-widest uppercase mt-4">
                 Click the X to enter the site
               </div>
             </div>
