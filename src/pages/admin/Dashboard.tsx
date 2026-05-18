@@ -10,6 +10,7 @@ import {
   CheckCircle, 
   XCircle, 
   Trash2,
+  Pencil,
   Plus,
   Upload,
   Loader2,
@@ -34,6 +35,7 @@ export default function Dashboard() {
   const [admissions, setAdmissions] = useState<Admission[]>([]);
   const [results, setResults] = useState<Result[]>([]);
   const [gallery, setGallery] = useState<GalleryItem[]>([]);
+  const [editingResult, setEditingResult] = useState<Result | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -45,11 +47,11 @@ export default function Dashboard() {
     loadData();
   }, [navigate]);
 
-  const loadData = () => {
+  const loadData = async () => {
     setEnquiries(storage.getEnquiries());
     setAdmissions(storage.getAdmissions());
-    setResults(storage.getResults());
-    setGallery(storage.getGallery());
+    setResults(await storage.getResults());
+    setGallery(await storage.getGallery());
   };
 
   const handleLogout = () => {
@@ -314,28 +316,21 @@ export default function Dashboard() {
                           const fileInput = e.currentTarget.querySelector('input[type="file"]') as HTMLInputElement;
                           const file = fileInput?.files?.[0];
                           
-                          let photoUrl = 'https://picsum.photos/seed/student/200/200';
-                          
-                          if (file) {
+                          try {
                             setIsUploading(true);
-                            try {
-                              photoUrl = await handleFileUpload(file);
-                            } catch (error) {
-                              toast.error('Failed to upload image');
-                              setIsUploading(false);
-                              return;
-                            }
+                            await storage.saveResult({
+                              name: formData.get('name') as string,
+                              marks: formData.get('marks') as string,
+                              year: formData.get('year') as string,
+                              photo: '',
+                            }, file);
+                            toast.success('Topper added successfully');
+                            loadData();
+                          } catch (error) {
+                            toast.error('Failed to save result');
+                          } finally {
                             setIsUploading(false);
                           }
-
-                          storage.saveResult({
-                            name: formData.get('name') as string,
-                            marks: formData.get('marks') as string,
-                            year: formData.get('year') as string,
-                            photo: photoUrl,
-                          });
-                          toast.success('Topper added successfully');
-                          loadData();
                         }}
                         className="space-y-4 pt-4"
                       >
@@ -368,6 +363,64 @@ export default function Dashboard() {
                           Save Topper
                         </Button>
                       </form>
+                    </DialogContent>
+                  </Dialog>
+
+                  <Dialog open={editingResult !== null} onOpenChange={(open) => !open && setEditingResult(null)}>
+                    <DialogContent className="sm:max-w-md">
+                      <DialogHeader>
+                        <DialogTitle>Edit SSC Topper</DialogTitle>
+                      </DialogHeader>
+                      {editingResult && (
+                        <form
+                          onSubmit={async (e) => {
+                            e.preventDefault();
+                            const formData = new FormData(e.currentTarget);
+                            const fileInput = e.currentTarget.querySelector('input[type="file"]') as HTMLInputElement;
+                            const file = fileInput?.files?.[0];
+                            
+                            try {
+                              setIsUploading(true);
+                              await storage.updateResult(editingResult.id, {
+                                name: formData.get('name') as string,
+                                marks: formData.get('marks') as string,
+                                year: formData.get('year') as string,
+                              }, file);
+                              toast.success('Topper updated successfully');
+                              setEditingResult(null);
+                              loadData();
+                            } catch (error) {
+                              toast.error('Failed to update result');
+                            } finally {
+                              setIsUploading(false);
+                            }
+                          }}
+                          className="space-y-4 pt-4"
+                        >
+                          <div className="space-y-2">
+                            <label className="text-sm font-medium">Student Name</label>
+                            <Input name="name" defaultValue={editingResult.name} required />
+                          </div>
+                          <div className="space-y-2">
+                            <label className="text-sm font-medium">Marks Obtained</label>
+                            <Input name="marks" defaultValue={editingResult.marks} required />
+                          </div>
+                          <div className="space-y-2">
+                            <label className="text-sm font-medium">Passing Year</label>
+                            <Input name="year" defaultValue={editingResult.year} required />
+                          </div>
+                          <div className="space-y-2">
+                            <label className="text-sm font-medium">Student Photo</label>
+                            <div className="flex items-center gap-4">
+                              <img src={editingResult.photo} alt={editingResult.name} className="size-12 rounded-full object-cover" />
+                              <Input type="file" accept="image/*" />
+                            </div>
+                          </div>
+                          <Button type="submit" className="w-full" disabled={isUploading}>
+                            {isUploading ? <Loader2 className="animate-spin mr-2" /> : 'Update Topper'}
+                          </Button>
+                        </form>
+                      )}
                     </DialogContent>
                   </Dialog>
                 </CardHeader>
@@ -403,8 +456,16 @@ export default function Dashboard() {
                               <Button
                                 size="icon"
                                 variant="outline"
-                                onClick={() => {
-                                  storage.deleteResult(r.id);
+                                className="mr-2"
+                                onClick={() => setEditingResult(r)}
+                              >
+                                <Pencil size={16} className="text-blue-600" />
+                              </Button>
+                              <Button
+                                size="icon"
+                                variant="outline"
+                                onClick={async () => {
+                                  await storage.deleteResult(r.id);
                                   toast.success('Topper removed');
                                   loadData();
                                 }}
@@ -447,14 +508,13 @@ export default function Dashboard() {
                             return;
                           }
 
-                          setIsUploading(true);
                           try {
-                            const imageUrl = await handleFileUpload(file);
-                            storage.saveGalleryItem({
+                            setIsUploading(true);
+                            await storage.saveGalleryItem({
                               title: formData.get('title') as string,
-                              imageUrl: imageUrl,
+                              imageUrl: '',
                               category: formData.get('category') as any,
-                            });
+                            }, file);
                             toast.success('Image added to gallery');
                             loadData();
                           } catch (error) {

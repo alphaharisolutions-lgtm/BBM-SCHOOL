@@ -1,0 +1,359 @@
+[
+  {
+    "id": "1",
+    "name": "D. MEGHANA",
+    "marks": "586 / 600",
+    "photo": "/uploads/1779127559671.jpeg",
+    "year": "2026"
+  },
+  {
+    "id": "2",
+    "name": "T. SRI CHARITHA",
+    "marks": "585 / 600",
+    "photo": "https://picsum.photos/seed/student2/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "3",
+    "name": "G. CHARAN",
+    "marks": "579 / 600",
+    "photo": "https://picsum.photos/seed/student3/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "4",
+    "name": "J. VASU",
+    "marks": "578 / 600",
+    "photo": "https://picsum.photos/seed/student4/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "5",
+    "name": "G. JASHWANTH",
+    "marks": "573 / 600",
+    "photo": "https://picsum.photos/seed/student5/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "6",
+    "name": "N. KEERTHANA",
+    "marks": "572 / 600",
+    "photo": "https://picsum.photos/seed/student6/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "7",
+    "name": "U. MANOJKUMAR",
+    "marks": "569 / 600",
+    "photo": "https://picsum.photos/seed/student7/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "8",
+    "name": "T. PRIYANKA",
+    "marks": "565 / 600",
+    "photo": "https://picsum.photos/seed/student8/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "9",
+    "name": "SK. REHAAN",
+    "marks": "565 / 600",
+    "photo": "https://picsum.photos/seed/student9/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "10",
+    "name": "G. PREMALATHA",
+    "marks": "564 / 600",
+    "photo": "https://picsum.photos/seed/student10/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "11",
+    "name": "S. SIDDHARTHA",
+    "marks": "563 / 600",
+    "photo": "https://picsum.photos/seed/student11/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "12",
+    "name": "S. SAI KIRAN",
+    "marks": "563 / 600",
+    "photo": "https://picsum.photos/seed/student12/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "13",
+    "name": "K. AKSHAYA",
+    "marks": "558 / 600",
+    "photo": "https://picsum.photos/seed/student13/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "14",
+    "name": "P. GOWTHAM",
+    "marks": "555 / 600",
+    "photo": "https://picsum.photos/seed/student14/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "15",
+    "name": "M. VARSHITH",
+    "marks": "553 / 600",
+    "photo": "https://picsum.photos/seed/student15/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "16",
+    "name": "BBM Student",
+    "marks": "549 / 600",
+    "photo": "https://picsum.photos/seed/student16/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "17",
+    "name": "BBM Student",
+    "marks": "547 / 600",
+    "photo": "https://picsum.photos/seed/student17/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "18",
+    "name": "BBM Student",
+    "marks": "546 / 600",
+    "photo": "https://picsum.photos/seed/student18/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "19",
+    "name": "BBM Student",
+    "marks": "546 / 600",
+    "photo": "https://picsum.photos/seed/student19/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "20",
+    "name": "BBM Student",
+    "marks": "545 / 600",
+    "photo": "https://picsum.photos/seed/student20/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "21",
+    "name": "BBM Student",
+    "marks": "544 / 600",
+    "photo": "https://picsum.photos/seed/student21/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "22",
+    "name": "BBM Student",
+    "marks": "544 / 600",
+    "photo": "https://picsum.photos/seed/student22/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "23",
+    "name": "BBM Student",
+    "marks": "543 / 600",
+    "photo": "https://picsum.photos/seed/student23/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "24",
+    "name": "BBM Student",
+    "marks": "543 / 600",
+    "photo": "https://picsum.photos/seed/student24/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "25",
+    "name": "BBM Student",
+    "marks": "538 / 600",
+    "photo": "https://picsum.photos/seed/student25/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "26",
+    "name": "BBM Student",
+    "marks": "537 / 600",
+    "photo": "https://picsum.photos/seed/student26/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "27",
+    "name": "BBM Student",
+    "marks": "535 / 600",
+    "photo": "https://picsum.photos/seed/student27/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "28",
+    "name": "BBM Student",
+    "marks": "534 / 600",
+    "photo": "https://picsum.photos/seed/student28/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "29",
+    "name": "BBM Student",
+    "marks": "532 / 600",
+    "photo": "https://picsum.photos/seed/student29/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "30",
+    "name": "BBM Student",
+    "marks": "526 / 600",
+    "photo": "https://picsum.photos/seed/student30/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "31",
+    "name": "BBM Student",
+    "marks": "522 / 600",
+    "photo": "https://picsum.photos/seed/student31/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "32",
+    "name": "BBM Student",
+    "marks": "522 / 600",
+    "photo": "https://picsum.photos/seed/student32/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "33",
+    "name": "BBM Student",
+    "marks": "517 / 600",
+    "photo": "https://picsum.photos/seed/student33/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "34",
+    "name": "BBM Student",
+    "marks": "516 / 600",
+    "photo": "https://picsum.photos/seed/student34/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "35",
+    "name": "BBM Student",
+    "marks": "513 / 600",
+    "photo": "https://picsum.photos/seed/student35/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "36",
+    "name": "BBM Student",
+    "marks": "508 / 600",
+    "photo": "https://picsum.photos/seed/student36/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "37",
+    "name": "BBM Student",
+    "marks": "506 / 600",
+    "photo": "https://picsum.photos/seed/student37/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "38",
+    "name": "BBM Student",
+    "marks": "505 / 600",
+    "photo": "https://picsum.photos/seed/student38/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "39",
+    "name": "BBM Student",
+    "marks": "503 / 600",
+    "photo": "https://picsum.photos/seed/student39/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "40",
+    "name": "BBM Student",
+    "marks": "501 / 600",
+    "photo": "https://picsum.photos/seed/student40/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "41",
+    "name": "BBM Student",
+    "marks": "501 / 600",
+    "photo": "https://picsum.photos/seed/student41/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "42",
+    "name": "BBM Student",
+    "marks": "498 / 600",
+    "photo": "https://picsum.photos/seed/student42/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "43",
+    "name": "BBM Student",
+    "marks": "492 / 600",
+    "photo": "https://picsum.photos/seed/student43/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "44",
+    "name": "BBM Student",
+    "marks": "491 / 600",
+    "photo": "https://picsum.photos/seed/student44/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "45",
+    "name": "BBM Student",
+    "marks": "485 / 600",
+    "photo": "https://picsum.photos/seed/student45/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "46",
+    "name": "BBM Student",
+    "marks": "483 / 600",
+    "photo": "https://picsum.photos/seed/student46/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "47",
+    "name": "BBM Student",
+    "marks": "480 / 600",
+    "photo": "https://picsum.photos/seed/student47/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "48",
+    "name": "BBM Student",
+    "marks": "478 / 600",
+    "photo": "https://picsum.photos/seed/student48/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "49",
+    "name": "BBM Student",
+    "marks": "467 / 600",
+    "photo": "https://picsum.photos/seed/student49/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "50",
+    "name": "BBM Student",
+    "marks": "450 / 600",
+    "photo": "https://picsum.photos/seed/student50/200/200",
+    "year": "2026"
+  },
+  {
+    "id": "51",
+    "name": "BBM Student",
+    "marks": "414 / 600",
+    "photo": "https://picsum.photos/seed/student51/200/200",
+    "year": "2026"
+  }
+]

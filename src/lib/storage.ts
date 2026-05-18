@@ -60,35 +60,79 @@ export const storage = {
     set(STORAGE_KEYS.ADMISSIONS, admissions);
   },
 
-  getResults: () => get<Result[]>(STORAGE_KEYS.RESULTS, [
-    { id: '1', name: 'S. Rajesh', marks: '583 / 600', photo: 'https://picsum.photos/seed/student1/200/200', year: '2024' },
-    { id: '2', name: 'K. Anitha', marks: '578 / 600', photo: 'https://picsum.photos/seed/student2/200/200', year: '2024' },
-  ]),
-  saveResult: (result: Omit<Result, 'id'>) => {
-    const results = storage.getResults();
-    const newResult: Result = { ...result, id: crypto.randomUUID() };
-    set(STORAGE_KEYS.RESULTS, [newResult, ...results]);
-    return newResult;
+  getResults: async (): Promise<Result[]> => {
+    try {
+      const response = await fetch('/api/results');
+      if (!response.ok) throw new Error('Failed to fetch results');
+      return await response.json();
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
   },
-  deleteResult: (id: string) => {
-    const results = storage.getResults().filter(r => r.id !== id);
-    set(STORAGE_KEYS.RESULTS, results);
+  saveResult: async (result: Omit<Result, 'id'>, file?: File): Promise<Result> => {
+    const formData = new FormData();
+    formData.append('name', result.name);
+    formData.append('marks', result.marks);
+    formData.append('year', result.year);
+    if (file) formData.append('photo', file);
+
+    const response = await fetch('/api/results', {
+      method: 'POST',
+      body: formData,
+    });
+    if (!response.ok) throw new Error('Failed to save result');
+    return await response.json();
+  },
+  updateResult: async (id: string, result: Partial<Omit<Result, 'id'>>, file?: File): Promise<Result> => {
+    const formData = new FormData();
+    if (result.name) formData.append('name', result.name);
+    if (result.marks) formData.append('marks', result.marks);
+    if (result.year) formData.append('year', result.year);
+    if (file) formData.append('photo', file);
+
+    const response = await fetch(`/api/results/${id}`, {
+      method: 'PUT',
+      body: formData,
+    });
+    if (!response.ok) throw new Error('Failed to update result');
+    return await response.json();
+  },
+  deleteResult: async (id: string): Promise<void> => {
+    const response = await fetch(`/api/results/${id}`, {
+      method: 'DELETE',
+    });
+    if (!response.ok) throw new Error('Failed to delete result');
   },
 
-  getGallery: () => get<GalleryItem[]>(STORAGE_KEYS.GALLERY, [
-    { id: '1', title: 'Science Lab', imageUrl: 'https://picsum.photos/seed/lab/800/600', category: 'Labs', createdAt: new Date().toISOString() },
-    { id: '2', title: 'Cultural Fest', imageUrl: 'https://picsum.photos/seed/fest/800/600', category: 'Cultural', createdAt: new Date().toISOString() },
-    { id: '3', title: 'Graduation Day', imageUrl: 'https://picsum.photos/seed/grad/800/600', category: 'Graduation', createdAt: new Date().toISOString() },
-  ]),
-  saveGalleryItem: (item: Omit<GalleryItem, 'id' | 'createdAt'>) => {
-    const gallery = storage.getGallery();
-    const newItem: GalleryItem = { ...item, id: crypto.randomUUID(), createdAt: new Date().toISOString() };
-    set(STORAGE_KEYS.GALLERY, [newItem, ...gallery]);
-    return newItem;
+  getGallery: async (): Promise<GalleryItem[]> => {
+    try {
+      const response = await fetch('/api/gallery');
+      if (!response.ok) throw new Error('Failed to fetch gallery');
+      return await response.json();
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
   },
-  deleteGalleryItem: (id: string) => {
-    const gallery = storage.getGallery().filter(g => g.id !== id);
-    set(STORAGE_KEYS.GALLERY, gallery);
+  saveGalleryItem: async (item: Omit<GalleryItem, 'id' | 'createdAt'>, file?: File): Promise<GalleryItem> => {
+    const formData = new FormData();
+    formData.append('title', item.title);
+    formData.append('category', item.category);
+    if (file) formData.append('image', file);
+
+    const response = await fetch('/api/gallery', {
+      method: 'POST',
+      body: formData,
+    });
+    if (!response.ok) throw new Error('Failed to save gallery item');
+    return await response.json();
+  },
+  deleteGalleryItem: async (id: string): Promise<void> => {
+    const response = await fetch(`/api/gallery/${id}`, {
+      method: 'DELETE',
+    });
+    if (!response.ok) throw new Error('Failed to delete gallery item');
   },
 
   isAdminLoggedIn: () => !!localStorage.getItem(STORAGE_KEYS.AUTH),
