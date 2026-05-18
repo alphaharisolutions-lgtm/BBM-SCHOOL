@@ -73,11 +73,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <div className="absolute bottom-[35%] right-[25%] text-white/50 animate-pulse delay-900"><Star size={12} fill="currentColor" /></div>
             </div>
 
-            <div className="relative max-w-6xl w-full flex flex-col items-center gap-10">
-              {/* Glowing background */}
-              <div className="absolute -inset-10 bg-gradient-to-tr from-violet-600/20 via-pink-600/20 to-amber-500/20 opacity-30 blur-3xl" />
-
-              {/* Cross mark */}
+              {/* Cross mark - Moved to screen corner */}
               <motion.button
                 initial={{ opacity: 0, scale: 0.5, y: -20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -85,20 +81,30 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setShowSplash(false)}
-                className="absolute -top-6 right-4 text-white hover:text-yellow-400 transition-all duration-300 bg-white/5 hover:bg-white/10 p-4 rounded-full backdrop-blur-md border border-white/10 hover:border-white/30 shadow-2xl group"
+                className="absolute top-4 right-4 text-white hover:text-yellow-400 transition-all duration-300 bg-white/5 hover:bg-white/10 p-4 rounded-full backdrop-blur-md border border-white/10 hover:border-white/30 shadow-2xl group z-[110]"
               >
                 <X size={28} className="transition-transform group-hover:rotate-90" />
               </motion.button>
 
+            <div className="relative max-w-6xl w-full flex flex-col items-center gap-10">
+              {/* Glowing background */}
+              <div className="absolute -inset-10 bg-gradient-to-tr from-violet-600/20 via-pink-600/20 to-amber-500/20 opacity-30 blur-3xl" />
+
+              {/* Admissions Text */}
+              <div className="text-center space-y-1 mb-2 relative z-10">
+                <h2 className="text-xl md:text-3xl font-black text-yellow-400 uppercase tracking-wider">Admissions are in Progress</h2>
+                <p className="text-base md:text-xl font-bold text-white">2026 - 27</p>
+              </div>
+
               {/* Book Container */}
-              <div className="flex flex-col md:flex-row gap-0 w-full justify-center relative z-10 max-w-4xl" style={{ perspective: 1200 }}>
+              <div className="flex flex-row gap-0 w-full justify-center relative z-10 max-w-4xl" style={{ perspective: 1200 }}>
                 {/* Left Page */}
                 <motion.div
                   initial={{ opacity: 0, x: -50, rotateY: 35 }}
                   animate={{ opacity: 1, x: 0, rotateY: 0 }}
                   transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   whileHover={{ scale: 1.01 }}
-                  className="w-full md:w-1/2 relative aspect-[4/5] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.8)] border border-white/10 bg-black/40 group cursor-pointer"
+                  className="w-1/2 relative aspect-[4/5] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.8)] border border-white/10 bg-black/40 group cursor-pointer"
                   style={{ transformOrigin: "right center" }}
                 >
                   <img
@@ -116,7 +122,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   animate={{ opacity: 1, x: 0, rotateY: 0 }}
                   transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   whileHover={{ scale: 1.01 }}
-                  className="w-full md:w-1/2 relative aspect-[4/5] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.8)] border border-white/10 bg-black/40 group cursor-pointer"
+                  className="w-1/2 relative aspect-[4/5] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.8)] border border-white/10 bg-black/40 group cursor-pointer"
                   style={{ transformOrigin: "left center" }}
                 >
                   <img
