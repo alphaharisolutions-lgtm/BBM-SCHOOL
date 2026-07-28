@@ -27,7 +27,7 @@ jobs:
       - name: 🚀 FTP Deploy to Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER || 'ftp.bbmschool.com' }}
+          server: ${{ secrets.FTP_SERVER || '145.79.213.119' }}
           username: ${{ secrets.FTP_USERNAME || 'u729386670.bbmschool.com' }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
