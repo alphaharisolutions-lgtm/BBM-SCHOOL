@@ -35,6 +35,9 @@ jobs:
           set ftp:ssl-allow yes;
           set ssl:verify-certificate false;
           set ftp:passive-mode true;
+          set ftp:use-site-chmod false;
+          set ftp:use-mdtm false;
+          set xfer:temp-file-name \"\";
           open -u \"$FTP_USERNAME\",\"$FTP_PASSWORD\" \"$FTP_SERVER\";
           mirror -R --verbose ./dist/ ./;
           quit
