@@ -302,12 +302,10 @@ export default function Dashboard() {
               <Card>
                 <CardHeader className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <CardTitle>SSC Toppers Management</CardTitle>
+                  <Button className="gap-2 w-full sm:w-auto" onClick={() => setIsAddResultOpen(true)}>
+                    <Plus size={18} /> Add Topper
+                  </Button>
                   <Dialog open={isAddResultOpen} onOpenChange={setIsAddResultOpen}>
-                    <DialogTrigger asChild>
-                      <Button className="gap-2 w-full sm:w-auto">
-                        <Plus size={18} /> Add Topper
-                      </Button>
-                    </DialogTrigger>
                     <DialogContent className="sm:max-w-md">
                       <DialogHeader>
                         <DialogTitle>Add New SSC Topper</DialogTitle>
@@ -490,12 +488,10 @@ export default function Dashboard() {
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between">
                   <CardTitle>Gallery Management</CardTitle>
+                  <Button className="gap-2" onClick={() => setIsAddGalleryOpen(true)}>
+                    <Plus size={18} /> Add Image
+                  </Button>
                   <Dialog open={isAddGalleryOpen} onOpenChange={setIsAddGalleryOpen}>
-                    <DialogTrigger asChild>
-                      <Button className="gap-2">
-                        <Plus size={18} /> Add Image
-                      </Button>
-                    </DialogTrigger>
                     <DialogContent>
                       <DialogHeader>
                         <DialogTitle>Add Gallery Image</DialogTitle>

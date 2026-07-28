@@ -14,9 +14,8 @@ interface DialogTriggerProps extends DialogPrimitive.Trigger.Props {
   asChild?: boolean
 }
 
-function DialogTrigger({ asChild, ...props }: DialogTriggerProps) {
-  const Comp = asChild ? Slot : DialogPrimitive.Trigger
-  return <Comp data-slot="dialog-trigger" {...props} />
+function DialogTrigger({ ...props }: DialogTriggerProps) {
+  return <DialogPrimitive.Trigger data-slot="dialog-trigger" {...props} />
 }
 
 function DialogPortal({ ...props }: DialogPrimitive.Portal.Props) {
