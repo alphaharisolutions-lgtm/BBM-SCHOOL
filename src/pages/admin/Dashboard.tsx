@@ -40,6 +40,7 @@ export default function Dashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isAddResultOpen, setIsAddResultOpen] = useState(false);
   const [isAddGalleryOpen, setIsAddGalleryOpen] = useState(false);
+  const [galleryCategory, setGalleryCategory] = useState<string>('Events');
 
   useEffect(() => {
     if (!storage.isAdminLoggedIn()) {
@@ -503,25 +504,27 @@ export default function Dashboard() {
                         onSubmit={async (e) => {
                           e.preventDefault();
                           const formData = new FormData(e.currentTarget);
+                          const title = formData.get('title') as string;
                           const fileInput = e.currentTarget.querySelector('input[type="file"]') as HTMLInputElement;
                           const file = fileInput?.files?.[0];
                           
                           if (!file) {
-                            toast.error('Please select an image');
+                            toast.error('Please select an image file');
                             return;
                           }
- 
+
                           try {
                             setIsUploading(true);
                             await storage.saveGalleryItem({
-                              title: formData.get('title') as string,
+                              title,
                               imageUrl: '',
-                              category: formData.get('category') as any,
+                              category: galleryCategory as any,
                             }, file);
                             toast.success('Image added to gallery');
                             setIsAddGalleryOpen(false);
                             loadData();
                           } catch (error) {
+                            console.error('Failed to upload image:', error);
                             toast.error('Failed to upload image');
                           } finally {
                             setIsUploading(false);
@@ -535,7 +538,7 @@ export default function Dashboard() {
                         </div>
                         <div className="space-y-2">
                           <label className="text-sm font-medium">Category</label>
-                          <Select name="category" required>
+                          <Select value={galleryCategory} onValueChange={setGalleryCategory}>
                             <SelectTrigger>
                               <SelectValue placeholder="Select category" />
                             </SelectTrigger>

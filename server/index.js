@@ -39,11 +39,53 @@ if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir);
 const resultsFile = path.join(dataDir, 'results.json');
 const galleryFile = path.join(dataDir, 'gallery.json');
 
+const defaultGallery = [
+  {
+    id: "g1",
+    title: "Annual Sports Meet",
+    category: "Events",
+    imageUrl: "https://picsum.photos/seed/sports/800/600",
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: "g2",
+    title: "Science & Innovation Lab",
+    category: "Labs",
+    imageUrl: "https://picsum.photos/seed/scilab/800/600",
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: "g3",
+    title: "Cultural Festival Celebrations",
+    category: "Cultural",
+    imageUrl: "https://picsum.photos/seed/cultural/800/600",
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: "g4",
+    title: "Graduation & Farewell Ceremony",
+    category: "Graduation",
+    imageUrl: "https://picsum.photos/seed/grad/800/600",
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: "g5",
+    title: "Independence Day Festivities",
+    category: "Celebrations",
+    imageUrl: "https://picsum.photos/seed/indep/800/600",
+    createdAt: new Date().toISOString()
+  }
+];
+
 // Helper to read results
 const getResults = () => {
   if (!fs.existsSync(resultsFile)) return [];
   const data = fs.readFileSync(resultsFile, 'utf8');
-  return JSON.parse(data);
+  try {
+    return JSON.parse(data);
+  } catch (e) {
+    return [];
+  }
 };
 
 // Helper to save results
@@ -53,9 +95,17 @@ const saveResults = (results) => {
 
 // Helper to read gallery
 const getGallery = () => {
-  if (!fs.existsSync(galleryFile)) return [];
+  if (!fs.existsSync(galleryFile)) {
+    saveGallery(defaultGallery);
+    return defaultGallery;
+  }
   const data = fs.readFileSync(galleryFile, 'utf8');
-  return JSON.parse(data);
+  try {
+    const parsed = JSON.parse(data);
+    return parsed && parsed.length > 0 ? parsed : defaultGallery;
+  } catch (e) {
+    return defaultGallery;
+  }
 };
 
 // Helper to save gallery
