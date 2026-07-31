@@ -34,6 +34,15 @@ export interface GalleryItem {
   createdAt: string;
 }
 
+export interface SiteMediaItem {
+  id: string;
+  title: string;
+  category: string;
+  imageUrl: string;
+  description: string;
+  createdAt: string;
+}
+
 export interface User {
   email: string;
   role: 'admin';

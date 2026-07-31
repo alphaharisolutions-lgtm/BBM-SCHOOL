@@ -230,6 +230,97 @@ app.delete('/api/gallery/:id', (req, res) => {
   }
 });
 
+// Site Media Management API
+const mediaFile = path.join(dataDir, 'media.json');
+
+const defaultMedia = [
+  { id: 'sm1', title: 'Official School Logo', category: 'Logo & Branding', imageUrl: '/logo.png', description: 'Primary BBM High School Logo badge used across header and official documents', createdAt: new Date().toISOString() },
+  { id: 'sm2', title: 'BBM Main Campus View', category: 'Hero & Campus', imageUrl: '/school.jpeg', description: 'Main campus building view in Naidupet, Khammam', createdAt: new Date().toISOString() },
+  { id: 'sm3', title: 'IIT Foundation Banner', category: 'Programs & Pre-Primary', imageUrl: '/iit_coaching.png', description: 'Coaching banner for Class VI-IX IIT Foundation program', createdAt: new Date().toISOString() },
+  { id: 'sm4', title: 'Medical Foundation Banner', category: 'Programs & Pre-Primary', imageUrl: '/medical_coaching.png', description: 'Medical Foundation guidance banner for competitive exams', createdAt: new Date().toISOString() },
+  { id: 'sm5', title: 'Director - Sri G. Kantha Rao', category: 'Leadership & Staff', imageUrl: '/sir.jpeg', description: 'Gurram Kantha Rao Garu - Director of BBM High School', createdAt: new Date().toISOString() },
+  { id: 'sm6', title: 'Correspondent - Smt. G. Nagamani', category: 'Leadership & Staff', imageUrl: '/madam.jpeg', description: 'Gurram Nagamani Garu - Correspondent of BBM High School', createdAt: new Date().toISOString() },
+  { id: 'sm7', title: 'Gents Faculty Team', category: 'Leadership & Staff', imageUrl: '/gents.jpeg', description: 'Gents teaching staff and academic department leads', createdAt: new Date().toISOString() },
+  { id: 'sm8', title: 'Ladies Faculty Team', category: 'Leadership & Staff', imageUrl: '/ladies.jpeg', description: 'Ladies teaching staff and early childhood educators', createdAt: new Date().toISOString() },
+  { id: 'sm9', title: 'Transportation Bus Fleet', category: 'Transportation & Bus', imageUrl: '/bus.jpeg', description: 'Safe school transportation bus serving all routes across Khammam', createdAt: new Date().toISOString() },
+];
+
+const getMedia = () => {
+  if (!fs.existsSync(mediaFile)) {
+    saveMedia(defaultMedia);
+    return defaultMedia;
+  }
+  try {
+    return JSON.parse(fs.readFileSync(mediaFile, 'utf8'));
+  } catch (e) {
+    return defaultMedia;
+  }
+};
+
+const saveMedia = (media) => {
+  fs.writeFileSync(mediaFile, JSON.stringify(media, null, 2));
+};
+
+app.get('/api/media', (req, res) => {
+  try {
+    res.json(getMedia());
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.post('/api/media', upload.single('image'), (req, res) => {
+  try {
+    const media = getMedia();
+    const newItem = {
+      id: 'sm_' + Date.now().toString(),
+      title: req.body.title || 'Untitled Image',
+      category: req.body.category || 'General',
+      description: req.body.description || '',
+      imageUrl: req.file ? `/uploads/${req.file.filename}` : (req.body.imageUrl || '/logo.png'),
+      createdAt: new Date().toISOString()
+    };
+    media.unshift(newItem);
+    saveMedia(media);
+    res.status(201).json(newItem);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.put('/api/media/:id', upload.single('image'), (req, res) => {
+  try {
+    const media = getMedia();
+    const index = media.findIndex(m => m.id === req.params.id);
+    if (index === -1) return res.status(404).json({ error: 'Media not found' });
+
+    const existing = media[index];
+    const updated = {
+      ...existing,
+      title: req.body.title || existing.title,
+      category: req.body.category || existing.category,
+      description: req.body.description !== undefined ? req.body.description : existing.description,
+      imageUrl: req.file ? `/uploads/${req.file.filename}` : (req.body.imageUrl || existing.imageUrl),
+    };
+    media[index] = updated;
+    saveMedia(media);
+    res.json(updated);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.delete('/api/media/:id', (req, res) => {
+  try {
+    const media = getMedia();
+    const filtered = media.filter(m => m.id !== req.params.id);
+    saveMedia(filtered);
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Serve static frontend files from the 'dist' directory
 app.use(express.static(path.join(__dirname, '../dist')));
 

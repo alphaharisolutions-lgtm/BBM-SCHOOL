@@ -6,13 +6,13 @@ import { Button } from '@/components/ui/button';
 
 const navLinks = [
   { name: 'Home', href: '/' },
-  { name: 'About', href: '/#about' },
-  { name: 'Programs', href: '/#programs' },
-  { name: 'Facilities', href: '/#facilities' },
-  { name: 'Results', href: '/#results' },
-  { name: 'Gallery', href: '/#gallery' },
+  { name: 'About', href: '/about' },
+  { name: 'Programs', href: '/programs' },
+  { name: 'Facilities', href: '/facilities' },
+  { name: 'Results', href: '/results' },
+  { name: 'Gallery', href: '/gallery' },
   { name: 'Admissions', href: '/admissions' },
-  { name: 'Contact', href: '/#contact' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 export function Navbar() {
@@ -27,17 +27,6 @@ export function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const scrollToSection = (href: string) => {
-    setIsOpen(false);
-    if (href.startsWith('/#')) {
-      const id = href.replace('/#', '');
-      const element = document.getElementById(id);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
 
   return (
     <nav
@@ -58,20 +47,18 @@ export function Navbar() {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
-              href={link.href}
-              onClick={(e) => {
-                if (link.href.startsWith('/#')) {
-                  e.preventDefault();
-                  scrollToSection(link.href);
-                }
-              }}
-              className="text-sm font-medium hover:text-primary transition-colors relative group"
+              to={link.href}
+              className={`text-sm font-medium transition-colors relative group ${
+                location.pathname === link.href ? 'text-primary font-bold' : 'hover:text-primary'
+              }`}
             >
               {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
-            </a>
+              <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all ${
+                location.pathname === link.href ? 'w-full' : 'w-0 group-hover:w-full'
+              }`} />
+            </Link>
           ))}
           <Button asChild className="rounded-full bg-[#0a4d29] hover:bg-[#083d21] text-white px-2 py-2 h-11 border-none shadow-lg group transition-all duration-300">
             <Link to="/admissions" className="flex items-center gap-3 pl-4 pr-1">
@@ -83,31 +70,39 @@ export function Navbar() {
           </Button>
         </div>
 
-        {/* Mobile Toggle */}
-        <button className="md:hidden text-primary" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        {/* Mobile Header Actions: About Button + 3 Lines Menu Icon */}
+        <div className="md:hidden flex items-center gap-2">
+          <Link
+            to="/about"
+            onClick={() => setIsOpen(false)}
+            className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all border ${
+              location.pathname === '/about'
+                ? 'bg-primary text-white border-primary shadow-sm'
+                : 'bg-primary/10 text-primary border-primary/20 hover:bg-primary hover:text-white'
+            }`}
+          >
+            About
+          </Link>
+          <button className="text-primary p-2" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle Menu">
+            {isOpen ? <X size={26} /> : <Menu size={26} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-background border-b p-4 flex flex-col gap-4 animate-in slide-in-from-top duration-300">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
-              href={link.href}
-              onClick={(e) => {
-                if (link.href.startsWith('/#')) {
-                  e.preventDefault();
-                  scrollToSection(link.href);
-                } else {
-                  setIsOpen(false);
-                }
-              }}
-              className="text-lg font-medium py-2 border-b border-muted last:border-0"
+              to={link.href}
+              onClick={() => setIsOpen(false)}
+              className={`text-lg font-medium py-2 border-b border-muted last:border-0 ${
+                location.pathname === link.href ? 'text-primary font-bold' : ''
+              }`}
             >
               {link.name}
-            </a>
+            </Link>
           ))}
           <Button asChild className="w-full rounded-2xl bg-[#0a4d29] hover:bg-[#083d21] text-white h-14 border-none shadow-xl group transition-all duration-300">
             <Link to="/admissions" onClick={() => setIsOpen(false)} className="flex items-center justify-between px-6 font-bold text-lg">

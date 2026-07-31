@@ -81,8 +81,38 @@ export function AIChatbot() {
             <p>• Playground and Sports coaching</p>
           </div>
         );
-      } else if (lowInput.includes('iit') || lowInput.includes('medical') || lowInput.includes('foundation')) {
-        response = "Our specialized IIT and Medical Foundation program is designed for Class VI-X. It ensures students develop strong conceptual clarity in Maths and Sciences, preparing them early for JEE, NEET, and other competitive exams.";
+      } else if (lowInput.includes('pre primary') || lowInput.includes('pre-primary') || lowInput.includes('nursery') || lowInput.includes('lkg') || lowInput.includes('ukg')) {
+        response = (
+          <div className="space-y-2 text-xs">
+            <p className="font-bold text-primary">👶 Pre-Primary Programme Highlights:</p>
+            <p>• Experiential learning through objective-driven activities & games.</p>
+            <p>• Focus on core literacy, fine motor handwriting skills & gentle drills.</p>
+            <p>• Regulated, age-appropriate screen time policy.</p>
+            <p>• Color Days, storytelling, and thorough academic revisions.</p>
+          </div>
+        );
+      } else if (lowInput.includes('iit') || lowInput.includes('foundation') || lowInput.includes('olympiad') || lowInput.includes('jee') || lowInput.includes('ntse')) {
+        response = (
+          <div className="space-y-2 text-xs">
+            <p className="font-bold text-primary">🔬 IIT & Basic Foundation (Classes VI to IX):</p>
+            <p>• Coaching in Maths, Physics, Chemistry & Logical Reasoning.</p>
+            <p>• Concept-based learning aligned with school curriculum.</p>
+            <p>• Prep for JEE, NTSE, Olympiads & Scholarship examinations.</p>
+            <p>• Regular practice tests, doubt sessions & individual mentoring.</p>
+            <p>• Continuous progress updates shared with parents.</p>
+          </div>
+        );
+      } else if (lowInput.includes('karate') || lowInput.includes('chess') || lowInput.includes('spoken english') || lowInput.includes('activity') || lowInput.includes('activities')) {
+        response = (
+          <div className="space-y-2 text-xs">
+            <p className="font-bold text-primary">🎨 Beyond Textbooks (Co-Curricular Fields):</p>
+            <p>• <span className="font-bold">Daily Spoken English:</span> Confidence & communication sessions.</p>
+            <p>• <span className="font-bold">Karate Training:</span> Self-defence, agility & discipline.</p>
+            <p>• <span className="font-bold">Chess Coaching:</span> Logical reasoning & strategic planning.</p>
+            <p>• <span className="font-bold">STEM & Innovation:</span> Science fairs, exhibitions & math activities.</p>
+            <p>• <span className="font-bold">Arts & Culture:</span> Art, craft, dance, drama & debate competitions.</p>
+          </div>
+        );
       } else if (lowInput.includes('contact') || lowInput.includes('phone') || lowInput.includes('details')) {
         response = (
           <div className="space-y-2 text-xs">

@@ -1,14 +1,101 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
-import { ArrowRight, BookOpen, Microscope, Monitor, Trophy, Users, Star, CheckCircle2, MapPin, Sparkles, Bus } from 'lucide-react';
+import { ArrowRight, BookOpen, Microscope, Monitor, Trophy, Users, Star, CheckCircle2, MapPin, Sparkles, Bus, GraduationCap, Brain, Swords, MessageSquare, Building2, Award, Image as ImageIcon, UserCheck, PhoneCall, ArrowUpRight, HelpCircle, Quote, ChevronDown, Check, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+
+interface HighlightDetail {
+  icon: any;
+  title: string;
+  desc: string;
+  badge: string;
+  category: string;
+  statBox?: { value: string; label: string };
+  details: string[];
+  highlightsList: string[];
+}
 
 export default function Home() {
-  const highlights = [
-    { icon: Trophy, title: '100% Results', desc: 'Consistent excellence in SSC examinations year after year.' },
-    { icon: Users, title: 'Expert Staff', desc: 'Highly experienced and dedicated teaching professionals.' },
-    { icon: Monitor, title: 'Smart Classes', desc: 'Modern digital classrooms for interactive and visual learning.' },
-    { icon: Microscope, title: 'Advanced Labs', desc: 'Well-equipped science and computer laboratories.' },
+  const [selectedHighlight, setSelectedHighlight] = useState<HighlightDetail | null>(null);
+
+  const highlights: HighlightDetail[] = [
+    { 
+      icon: Trophy, 
+      title: '100% Results', 
+      desc: 'Consistent excellence in SSC examinations year after year.', 
+      badge: 'Click to View Info',
+      category: 'Academic Supremacy',
+      statBox: { value: '586 / 600', label: 'Top SSC Mark (2026)' },
+      details: [
+        'BBM High School maintains an unbroken 100% pass record in SSC State Board examinations.',
+        'Over 80% of our students consistently score above 500 marks with top state ranks.',
+        'Comprehensive revision schedules, chapter-wise mock tests, and personal student mentoring ensure maximum exam readiness.'
+      ],
+      highlightsList: [
+        '100% SSC Pass Percentage Every Year',
+        'Top Subject Marks in Mathematics & Science',
+        'Individual Mentoring & Doubt-Clearing Sessions',
+        'Continuous Progress Tracking & Parent Updates'
+      ]
+    },
+    { 
+      icon: Users, 
+      title: 'Expert Staff', 
+      desc: 'Highly experienced and dedicated teaching professionals.', 
+      badge: 'Click to View Info',
+      category: 'Faculty & Mentorship',
+      statBox: { value: '15+ Yrs', label: 'Avg Teacher Tenure' },
+      details: [
+        'Our faculty comprises highly qualified, passionate educators with extensive teaching experience.',
+        'Led by Director Sri Gurram Kantha Rao and Correspondent Smt. Gurram Nagamani.',
+        'Teachers focus on concept-driven learning, compassionate guidance, and nurturing critical thinking.'
+      ],
+      highlightsList: [
+        'Subject-Specialized Faculty Members',
+        'Regular Teacher Enrichment & Pedagogy Workshops',
+        'Approachable & Caring Mentorship for Every Student',
+        'Dedicated Doubt-Clearing & Extra-Care Sessions'
+      ]
+    },
+    { 
+      icon: Monitor, 
+      title: 'Smart Classes', 
+      desc: 'Modern digital classrooms for interactive and visual learning.', 
+      badge: 'Click to View Info',
+      category: 'Digital Infrastructure',
+      statBox: { value: '100%', label: 'Smart Enabled Classes' },
+      details: [
+        'Classrooms equipped with high-definition digital smart boards and visual audio-video learning modules.',
+        '3D animations and interactive visual content make complex Science and Math concepts intuitive.',
+        'Balanced, age-appropriate screen time policy ensuring maximum cognitive retention.'
+      ],
+      highlightsList: [
+        'HD Digital Smart Boards in Classrooms',
+        '3D Animated Visual Curriculum Content',
+        'Interactive Classroom Quizzes & Exercises',
+        'Balanced Screen Time for Healthy Learning'
+      ]
+    },
+    { 
+      icon: Microscope, 
+      title: 'Advanced Labs', 
+      desc: 'Well-equipped science and computer laboratories.', 
+      badge: 'Click to View Info',
+      category: 'Practical STEM Learning',
+      statBox: { value: 'Modern', label: 'Science & Tech Labs' },
+      details: [
+        'Well-equipped Physics, Chemistry, and Biology laboratories enabling hands-on practical experiments.',
+        'State-of-the-art Computer Laboratory providing foundational digital literacy and coding basics.',
+        'Annual Science Exhibitions & Fairs where students build and demonstrate innovative projects.'
+      ],
+      highlightsList: [
+        'Comprehensive Physics, Chemistry & Biology Kits',
+        'High-Speed Computer Lab & Digital Training',
+        'Annual Science & Math Practical Exhibitions',
+        'Safety-First Practical Learning Guidelines'
+      ]
+    },
   ];
 
   const stats = [
@@ -16,6 +103,45 @@ export default function Home() {
     { label: 'Top SSC Score (2026)', value: '586/600' },
     { label: 'Years of Excellence', value: '30+' },
     { label: 'Students Scored 500+', value: '80%' },
+  ];
+
+  const pillars = [
+    {
+      title: '30+ Years Academic Legacy',
+      desc: 'Founded in 1995-96 by Sri V. Nageswara Rao, built on strong ethics, dedicated teachers, and compassionate administration.',
+      icon: Building2,
+      badge: 'Est. 1995'
+    },
+    {
+      title: 'IIT & Medical Foundation',
+      desc: 'Integrated coaching for Classes VI–IX in Maths, Physics, Chemistry & Logical Reasoning preparing for JEE, NTSE & Olympiads.',
+      icon: Brain,
+      badge: 'Class VI to IX'
+    },
+    {
+      title: 'Pre-Primary Experiential Pedagogy',
+      desc: 'Objective-driven cognitive activities, Color Days, core literacy, fine motor handwriting, and regulated screen time.',
+      icon: GraduationCap,
+      badge: 'Nursery, LKG, UKG'
+    },
+    {
+      title: 'Daily Spoken English & Skills',
+      desc: 'Daily Spoken English sessions for public speaking, Karate self-defence, Chess coaching, and annual Science Exhibitions.',
+      icon: MessageSquare,
+      badge: 'Co-Curricular'
+    },
+    {
+      title: '100% SSC Results Record',
+      desc: 'Consistent top rankers year after year, with 586/600 top mark in 2026 and 80% students scoring above 500 marks.',
+      icon: Trophy,
+      badge: 'State Honors'
+    },
+    {
+      title: 'Smart Infrastructure & Transport',
+      desc: 'Interactive Smart Board classrooms, modern Science & Computer Labs, Digital Library, and safe bus transport across Khammam.',
+      icon: Monitor,
+      badge: 'Modern Campus'
+    }
   ];
 
   return (
@@ -195,22 +321,117 @@ export default function Home() {
           {highlights.map((item, i) => (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              whileHover={{ y: -10, scale: 1.02 }}
+              transition={{ delay: i * 0.1, duration: 0.4 }}
               viewport={{ once: true }}
-              className="p-6 md:p-8 rounded-3xl bg-secondary/30 border border-border group hover:bg-primary hover:text-primary-foreground transition-all duration-500"
+              onClick={() => setSelectedHighlight(item)}
+              className="group cursor-pointer p-6 md:p-8 rounded-3xl bg-secondary/30 border border-border hover:bg-primary hover:text-primary-foreground hover:shadow-2xl transition-all duration-500 flex flex-col justify-between"
             >
-              <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-white/20 transition-colors">
-                <item.icon className="text-primary group-hover:text-white" size={28} />
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                    <item.icon className="text-primary group-hover:text-white" size={28} />
+                  </div>
+                  <div className="size-8 rounded-full bg-primary/10 group-hover:bg-yellow-400 group-hover:text-slate-950 flex items-center justify-center transition-all">
+                    <Sparkles size={16} className="text-primary group-hover:text-slate-950 transition-transform" />
+                  </div>
+                </div>
+                <h3 className="text-lg md:text-xl font-bold">{item.title}</h3>
+                <p className="text-sm md:text-base text-muted-foreground group-hover:text-white/80 leading-relaxed">
+                  {item.desc}
+                </p>
               </div>
-              <h3 className="text-lg md:text-xl font-bold mb-3">{item.title}</h3>
-              <p className="text-sm md:text-base text-muted-foreground group-hover:text-white/80 leading-relaxed">
-                {item.desc}
-              </p>
+
+              <div className="pt-6 mt-4 border-t border-border/40 group-hover:border-white/20 flex items-center justify-between text-xs font-extrabold text-primary group-hover:text-yellow-400">
+                <span>Click to Open Detail Popup</span>
+                <span>✨</span>
+              </div>
             </motion.div>
           ))}
         </div>
+
+        {/* 🌟 FEATURE HIGHLIGHT DETAIL POPUP DIALOG */}
+        {selectedHighlight && (
+          <Dialog open={!!selectedHighlight} onOpenChange={() => setSelectedHighlight(null)}>
+            <DialogContent showCloseButton={false} className="sm:max-w-4xl max-w-4xl w-[94vw] md:w-[85vw] lg:w-[75vw] max-h-[88vh] overflow-y-auto rounded-[2.5rem] p-6 md:p-10 bg-white border border-border shadow-2xl z-[100] focus:outline-none">
+              <DialogHeader className="space-y-4 text-left border-b border-slate-100 pb-5">
+                <div className="flex items-center justify-between">
+                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary font-black text-xs uppercase tracking-wider">
+                    {selectedHighlight.category}
+                  </div>
+                  <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    onClick={() => setSelectedHighlight(null)}
+                    className="rounded-full hover:bg-slate-100 h-10 w-10 text-slate-500 hover:text-slate-900 transition-colors"
+                  >
+                    <X size={22} />
+                  </Button>
+                </div>
+                <div className="flex items-center gap-4 pt-1">
+                  <div className="w-14 h-14 rounded-2xl bg-primary text-white flex items-center justify-center shadow-lg shrink-0">
+                    <selectedHighlight.icon size={30} />
+                  </div>
+                  <div>
+                    <DialogTitle className="text-2xl md:text-3xl font-extrabold text-slate-900 leading-tight">
+                      {selectedHighlight.title}
+                    </DialogTitle>
+                    <DialogDescription className="text-xs md:text-sm text-slate-500 font-medium">
+                      {selectedHighlight.desc}
+                    </DialogDescription>
+                  </div>
+                </div>
+              </DialogHeader>
+
+              <div className="space-y-6 pt-4">
+                {/* Highlight Stat Box */}
+                {selectedHighlight.statBox && (
+                  <div className="bg-gradient-to-r from-primary/10 via-indigo-50 to-primary/5 p-4 rounded-2xl border border-primary/20 flex items-center justify-between">
+                    <div>
+                      <span className="text-[10px] font-black uppercase tracking-wider text-muted-foreground">{selectedHighlight.statBox.label}</span>
+                      <h4 className="text-2xl md:text-3xl font-black text-primary">{selectedHighlight.statBox.value}</h4>
+                    </div>
+                    <Award size={32} className="text-primary opacity-60" />
+                  </div>
+                )}
+
+                {/* Detailed Paragraphs */}
+                <div className="space-y-3">
+                  <h4 className="font-extrabold text-xs text-slate-900 uppercase tracking-wider">About This Feature</h4>
+                  {selectedHighlight.details.map((para, idx) => (
+                    <p key={idx} className="text-sm text-slate-600 leading-relaxed">
+                      {para}
+                    </p>
+                  ))}
+                </div>
+
+                {/* Key Points Bullet List */}
+                <div className="space-y-3 pt-2">
+                  <h4 className="font-extrabold text-xs text-slate-900 uppercase tracking-wider">Key Highlights</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {selectedHighlight.highlightsList.map((point, idx) => (
+                      <div key={idx} className="flex items-center gap-2 text-xs font-bold text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-200/80">
+                        <CheckCircle2 size={16} className="text-primary shrink-0" />
+                        <span>{point}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-4 flex justify-end border-t border-slate-100">
+                  <Button 
+                    onClick={() => setSelectedHighlight(null)}
+                    className="rounded-2xl font-extrabold bg-primary text-white hover:bg-primary/90 px-8 h-12 shadow-lg"
+                  >
+                    Close Information Popup
+                  </Button>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
+        )}
       </section>
 
       {/* Stats Section */}
@@ -234,57 +455,368 @@ export default function Home() {
         </div>
       </section>
 
-      {/* IIT Foundation Section */}
-      <section className="max-w-7xl mx-auto px-4">
-        <div className="bg-secondary rounded-[2rem] md:rounded-[3rem] overflow-hidden flex flex-col lg:flex-row items-stretch">
-          <div className="lg:w-1/2 p-8 md:p-12 lg:p-20 space-y-6 md:space-y-8">
-            <div className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-bold uppercase tracking-wider">
-              Special Coaching
-            </div>
-            <h2 className="text-3xl md:text-5xl font-bold leading-tight">
-              IIT & Medical Foundation <br />
-              <span className="text-primary">Class VI – X</span>
-            </h2>
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-              We provide early preparation for competitive exams with advanced Maths and Science concepts, ensuring our students stay ahead in their academic journey.
-            </p>
-            <ul className="space-y-3 md:space-y-4">
-              {[
-                'Concept-based teaching methodology',
-                'Regular mock tests and analysis',
-                'Advanced problem-solving sessions',
-                'Individual attention for every student'
-              ].map(item => (
-                <li key={item} className="flex items-center gap-3 text-sm md:text-base font-medium">
-                  <CheckCircle2 className="text-primary shrink-0" size={20} />
-                  {item}
+      {/* Segregated Academic & Activity Fields Section */}
+      <section className="max-w-7xl mx-auto px-4 space-y-12">
+        <div className="text-center space-y-4 max-w-3xl mx-auto">
+          <div className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-bold uppercase tracking-wider">
+            Our Core Offerings
+          </div>
+          <h2 className="text-3xl md:text-5xl font-black leading-tight">
+            Segregated Educational & Activity Fields
+          </h2>
+          <p className="text-muted-foreground text-base md:text-lg">
+            Structured excellence tailored for every stage of your child's growth and competitive success.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Field 1: Pre Primary */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-40px" }}
+            whileHover={{ y: -10, scale: 1.02 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="bg-gradient-to-b from-amber-500/10 via-amber-500/5 to-white/90 backdrop-blur-xl rounded-[2.5rem] p-8 border border-amber-500/20 flex flex-col justify-between shadow-xl hover:shadow-[0_20px_50px_rgba(245,158,11,0.2)] hover:border-amber-400 transition-all duration-300 group"
+          >
+            <div className="space-y-6">
+              <div className="w-14 h-14 rounded-2xl bg-amber-500 text-slate-950 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <GraduationCap size={28} />
+              </div>
+              <div>
+                <span className="text-xs font-black text-amber-700 uppercase tracking-widest bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">Foundational Base</span>
+                <h3 className="text-2xl font-bold text-slate-900 mt-2">Pre-Primary Programme</h3>
+              </div>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Experiential learning methodology focusing on cognitive development, core literacy, fine motor handwriting, and regulated, age-appropriate screen time.
+              </p>
+              <ul className="space-y-2.5 text-xs text-slate-700 font-semibold">
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-amber-600 shrink-0" /> Hands-on learning & Color Days
                 </li>
-              ))}
-            </ul>
-            <Link to="/programs" className="block">
-              <Button className="w-full sm:w-auto rounded-full px-8 h-12 mt-4">Learn More About Programs</Button>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-amber-600 shrink-0" /> Systematic academic revisions
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-amber-600 shrink-0" /> Structured handwriting drills
+                </li>
+              </ul>
+            </div>
+            <div className="pt-8">
+              <Link to="/programs" className="block">
+                <Button variant="outline" className="w-full rounded-2xl border-amber-500/30 text-amber-900 hover:bg-amber-500 hover:text-slate-950 font-bold shadow-md">
+                  Explore Pre-Primary
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* Field 2: IIT Foundation */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-40px" }}
+            whileHover={{ y: -10, scale: 1.02 }}
+            transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
+            className="bg-slate-950 text-white rounded-[2.5rem] p-8 border border-yellow-400/40 flex flex-col justify-between shadow-2xl relative overflow-hidden group hover:border-yellow-400 hover:shadow-[0_20px_50px_rgba(234,179,8,0.25)] transition-all duration-300"
+          >
+            <div className="absolute -top-12 -right-12 w-36 h-36 bg-yellow-400/15 rounded-full blur-2xl pointer-events-none group-hover:scale-150 transition-transform duration-700" />
+            <div className="space-y-6 relative z-10">
+              <div className="w-14 h-14 rounded-2xl bg-yellow-400 text-slate-950 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <Brain size={28} />
+              </div>
+              <div>
+                <span className="text-xs font-black text-yellow-400 uppercase tracking-widest bg-yellow-400/10 px-3 py-1 rounded-full border border-yellow-400/30">Classes VI to IX</span>
+                <h3 className="text-2xl font-extrabold text-white mt-2">IIT & Basic Foundation</h3>
+              </div>
+              <p className="text-sm text-slate-300 leading-relaxed">
+                Comprehensive coaching in Maths, Physics, Chemistry & Logical Reasoning. Concept-based mastery preparing for JEE, NTSE & Olympiads.
+              </p>
+              <ul className="space-y-2.5 text-xs text-slate-200 font-medium">
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-yellow-400 shrink-0" /> Practice tests & doubt sessions
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-yellow-400 shrink-0" /> Individual mentoring & motivation
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-yellow-400 shrink-0" /> Regular parent progress updates
+                </li>
+              </ul>
+            </div>
+            <div className="pt-8 relative z-10">
+              <Link to="/programs" className="block">
+                <Button className="w-full rounded-2xl bg-yellow-400 text-slate-950 hover:bg-yellow-300 font-extrabold shadow-lg">
+                  Explore IIT Foundation
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* Field 3: Beyond Textbooks */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-40px" }}
+            whileHover={{ y: -10, scale: 1.02 }}
+            transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
+            className="bg-gradient-to-b from-blue-500/10 via-cyan-500/5 to-white/90 backdrop-blur-xl rounded-[2.5rem] p-8 border border-blue-500/20 flex flex-col justify-between shadow-xl hover:shadow-[0_20px_50px_rgba(59,130,246,0.2)] hover:border-blue-400 transition-all duration-300 group"
+          >
+            <div className="space-y-6">
+              <div className="w-14 h-14 rounded-2xl bg-primary text-white flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                <Trophy size={28} />
+              </div>
+              <div>
+                <span className="text-xs font-black text-blue-700 uppercase tracking-widest bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">Co-Curricular Fields</span>
+                <h3 className="text-2xl font-bold text-slate-900 mt-2">Beyond Textbooks</h3>
+              </div>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Holistic development encompassing Daily Spoken English, Karate training, Chess coaching, Science Fairs, and Cultural competitions.
+              </p>
+              <ul className="space-y-2.5 text-xs text-slate-700 font-semibold">
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-primary shrink-0" /> Daily Spoken English sessions
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-primary shrink-0" /> Karate & Chess coaching
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-primary shrink-0" /> Science Fairs, Debates & Quizzes
+                </li>
+              </ul>
+            </div>
+            <div className="pt-8">
+              <Link to="/programs" className="block">
+                <Button variant="outline" className="w-full rounded-2xl border-primary/30 text-primary hover:bg-primary hover:text-white font-bold shadow-md">
+                  Explore Activities
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 🏛️ PILLARS OF EDUCATIONAL EXCELLENCE */}
+      <section className="max-w-7xl mx-auto px-4 space-y-12">
+        <div className="bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-900 text-white rounded-[3rem] p-8 md:p-16 border border-indigo-900 shadow-2xl relative overflow-hidden space-y-12">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-yellow-400/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="text-center space-y-4 max-w-3xl mx-auto relative z-10">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-400/10 text-yellow-400 font-bold text-xs uppercase tracking-widest border border-yellow-400/30">
+              <Award size={16} />
+              Pillars of Educational Supremacy
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight">
+              Why Parents Choose BBM High School
+            </h2>
+            <p className="text-slate-300 text-base md:text-lg leading-relaxed">
+              Combining 30+ years of academic legacy with concept-driven competitive coaching and character building.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+            {pillars.map((pillar, idx) => (
+              <motion.div 
+                key={pillar.title}
+                initial={{ opacity: 0, y: 35, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-30px" }}
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
+                className="p-6 rounded-3xl bg-slate-900/80 backdrop-blur-md border border-slate-800 hover:border-yellow-400/50 hover:shadow-[0_15px_30px_rgba(234,179,8,0.15)] transition-all space-y-4 group"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="w-12 h-12 rounded-2xl bg-yellow-400/20 text-yellow-300 flex items-center justify-center font-bold group-hover:scale-110 transition-transform">
+                    <pillar.icon size={24} />
+                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-yellow-400 bg-yellow-400/10 px-3 py-1 rounded-full border border-yellow-400/20">
+                    {pillar.badge}
+                  </span>
+                </div>
+                <h3 className="font-extrabold text-xl text-white group-hover:text-yellow-400 transition-colors">{pillar.title}</h3>
+                <p className="text-sm text-slate-300 leading-relaxed">{pillar.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 🌟 OVERVIEW OF ALL 7 SCHOOL SECTIONS AT A GLANCE */}
+      <section className="max-w-7xl mx-auto px-4 space-y-12">
+        <div className="text-center space-y-4 max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-bold uppercase tracking-wider">
+            <Sparkles size={16} />
+            Explore Our School at a Glance
+          </div>
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight">
+            Discover Everything BBM High School Offers
+          </h2>
+          <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
+            Get quick insights into our history, academics, state-of-the-art facilities, stellar results, vibrant gallery, admission process, and campus contact.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {/* 1. About Section Preview */}
+          <motion.div 
+            whileHover={{ y: -6 }}
+            className="bg-white rounded-3xl p-8 border border-border shadow-lg hover:shadow-2xl transition-all space-y-6 flex flex-col justify-between group"
+          >
+            <div className="space-y-4">
+              <div className="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-600 flex items-center justify-center font-bold">
+                <Building2 size={28} />
+              </div>
+              <div className="space-y-2">
+                <span className="text-xs font-black text-amber-600 uppercase tracking-wider">Established 1995</span>
+                <h3 className="text-2xl font-extrabold text-slate-900 group-hover:text-primary transition-colors">1. About BBM</h3>
+              </div>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Founded by Sri V. Nageswara Rao in Naidupet, Khammam. Built on ethical values, quality education, and compassionate leadership.
+              </p>
+            </div>
+            <Link to="/about" className="inline-flex items-center gap-2 font-bold text-sm text-primary hover:text-primary/80 pt-2">
+              <span>Read Our Full Story</span>
+              <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Link>
-          </div>
-          <div className="lg:w-1/2 flex flex-col gap-4 p-4 lg:p-6 min-h-[400px]">
-            <div className="flex-1 relative rounded-3xl overflow-hidden shadow-lg group">
-              <img
-                src="/iit_coaching.png"
-                alt="IIT Foundation Coaching"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-4 text-white font-bold text-lg">IIT Foundation</div>
+          </motion.div>
+
+          {/* 2. Programs Section Preview */}
+          <motion.div 
+            whileHover={{ y: -6 }}
+            className="bg-white rounded-3xl p-8 border border-border shadow-lg hover:shadow-2xl transition-all space-y-6 flex flex-col justify-between group"
+          >
+            <div className="space-y-4">
+              <div className="w-14 h-14 rounded-2xl bg-indigo-500/10 text-indigo-600 flex items-center justify-center font-bold">
+                <GraduationCap size={28} />
+              </div>
+              <div className="space-y-2">
+                <span className="text-xs font-black text-indigo-600 uppercase tracking-wider">Nursery to Class X</span>
+                <h3 className="text-2xl font-extrabold text-slate-900 group-hover:text-primary transition-colors">2. Programs</h3>
+              </div>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Pre-Primary experiential learning, Class VI-IX IIT & Basic Foundation coaching, Daily Spoken English, Karate, and Chess.
+              </p>
             </div>
-            <div className="flex-1 relative rounded-3xl overflow-hidden shadow-lg group">
-              <img
-                src="/medical_coaching.png"
-                alt="Medical Foundation Coaching"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-4 text-white font-bold text-lg">Medical Foundation</div>
+            <Link to="/programs" className="inline-flex items-center gap-2 font-bold text-sm text-primary hover:text-primary/80 pt-2">
+              <span>Explore All Academic Fields</span>
+              <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </Link>
+          </motion.div>
+
+          {/* 3. Facilities Section Preview */}
+          <motion.div 
+            whileHover={{ y: -6 }}
+            className="bg-white rounded-3xl p-8 border border-border shadow-lg hover:shadow-2xl transition-all space-y-6 flex flex-col justify-between group"
+          >
+            <div className="space-y-4">
+              <div className="w-14 h-14 rounded-2xl bg-cyan-500/10 text-cyan-600 flex items-center justify-center font-bold">
+                <Monitor size={28} />
+              </div>
+              <div className="space-y-2">
+                <span className="text-xs font-black text-cyan-600 uppercase tracking-wider">Modern Campus</span>
+                <h3 className="text-2xl font-extrabold text-slate-900 group-hover:text-primary transition-colors">3. Facilities</h3>
+              </div>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Interactive Smart Classrooms, modern Science & Computer Labs, Digital Library, Play-way zones, and city-wide safe bus network.
+              </p>
             </div>
-          </div>
+            <Link to="/facilities" className="inline-flex items-center gap-2 font-bold text-sm text-primary hover:text-primary/80 pt-2">
+              <span>View Infrastructure & Labs</span>
+              <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </Link>
+          </motion.div>
+
+          {/* 4. Results Section Preview */}
+          <motion.div 
+            whileHover={{ y: -6 }}
+            className="bg-white rounded-3xl p-8 border border-border shadow-lg hover:shadow-2xl transition-all space-y-6 flex flex-col justify-between group"
+          >
+            <div className="space-y-4">
+              <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center font-bold">
+                <Award size={28} />
+              </div>
+              <div className="space-y-2">
+                <span className="text-xs font-black text-emerald-600 uppercase tracking-wider">100% SSC Pass</span>
+                <h3 className="text-2xl font-extrabold text-slate-900 group-hover:text-primary transition-colors">4. Results</h3>
+              </div>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Top SSC Score of 586/600, 80% students scoring 500+, and a 30+ year track record of state academic honors.
+              </p>
+            </div>
+            <Link to="/results" className="inline-flex items-center gap-2 font-bold text-sm text-primary hover:text-primary/80 pt-2">
+              <span>See Top Scorers & Marks</span>
+              <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </Link>
+          </motion.div>
+
+          {/* 5. Gallery Section Preview */}
+          <motion.div 
+            whileHover={{ y: -6 }}
+            className="bg-white rounded-3xl p-8 border border-border shadow-lg hover:shadow-2xl transition-all space-y-6 flex flex-col justify-between group"
+          >
+            <div className="space-y-4">
+              <div className="w-14 h-14 rounded-2xl bg-purple-500/10 text-purple-600 flex items-center justify-center font-bold">
+                <ImageIcon size={28} />
+              </div>
+              <div className="space-y-2">
+                <span className="text-xs font-black text-purple-600 uppercase tracking-wider">Vibrant Campus</span>
+                <h3 className="text-2xl font-extrabold text-slate-900 group-hover:text-primary transition-colors">5. Gallery</h3>
+              </div>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Photos & highlights of Science Fairs, Color Days, Annual Day celebrations, Karate demonstrations, Sports Days & Cultural events.
+              </p>
+            </div>
+            <Link to="/gallery" className="inline-flex items-center gap-2 font-bold text-sm text-primary hover:text-primary/80 pt-2">
+              <span>Browse Photo Gallery</span>
+              <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </Link>
+          </motion.div>
+
+          {/* 6. Admissions Section Preview */}
+          <motion.div 
+            whileHover={{ y: -6 }}
+            className="bg-white rounded-3xl p-8 border border-border shadow-lg hover:shadow-2xl transition-all space-y-6 flex flex-col justify-between group"
+          >
+            <div className="space-y-4">
+              <div className="w-14 h-14 rounded-2xl bg-rose-500/10 text-rose-600 flex items-center justify-center font-bold">
+                <UserCheck size={28} />
+              </div>
+              <div className="space-y-2">
+                <span className="text-xs font-black text-rose-600 uppercase tracking-wider">2026-27 Open</span>
+                <h3 className="text-2xl font-extrabold text-slate-900 group-hover:text-primary transition-colors">6. Admissions</h3>
+              </div>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Enroll your child from Nursery to Class X. Simple 3-step admission process, fee guidance, and guided campus tours available.
+              </p>
+            </div>
+            <Link to="/admissions" className="inline-flex items-center gap-2 font-bold text-sm text-primary hover:text-primary/80 pt-2">
+              <span>Start Admission Process</span>
+              <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </Link>
+          </motion.div>
+
+          {/* 7. Contact Section Preview */}
+          <motion.div 
+            whileHover={{ y: -6 }}
+            className="bg-gradient-to-br from-primary via-primary to-indigo-950 text-white rounded-3xl p-8 border border-primary-foreground/20 shadow-xl hover:shadow-2xl transition-all space-y-6 flex flex-col justify-between group lg:col-span-3"
+          >
+            <div className="flex flex-col md:flex-row gap-6 items-start md:items-center justify-between">
+              <div className="space-y-3">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-400 text-slate-950 font-black text-xs uppercase tracking-wider">
+                  <PhoneCall size={14} />
+                  <span>Get In Touch</span>
+                </div>
+                <h3 className="text-2xl md:text-3xl font-extrabold text-white">7. Contact & Campus Location</h3>
+                <p className="text-sm text-slate-200 leading-relaxed max-w-2xl">
+                  Located at Naidupet, Khammam, Telangana. Call us at <strong>+91 9948726955</strong> or visit our campus for direct counselling and tours.
+                </p>
+              </div>
+              <Link to="/contact">
+                <Button className="rounded-2xl bg-yellow-400 text-slate-950 hover:bg-yellow-300 font-extrabold px-8 h-12 shadow-lg shrink-0">
+                  Contact Us & Location Map
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -466,6 +998,74 @@ export default function Home() {
         </div>
       </section>
 
+      {/* 💬 PARENT TESTIMONIALS & REVIEWS SECTION */}
+      <section className="max-w-7xl mx-auto px-4 space-y-12">
+        <div className="text-center space-y-4 max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-bold uppercase tracking-wider">
+            <Quote size={16} />
+            Parent Testimonials
+          </div>
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight">
+            What Parents Say About BBM High School
+          </h2>
+          <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
+            Hear from parents whose children thrive academically, mentally, and socially in our school environment.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            {
+              quote: "The IIT Foundation program at BBM High School transformed my son's analytical thinking in Maths and Physics. His confidence in competitive practice exams has grown tremendously!",
+              author: "Dr. K. Srinivas Rao",
+              relation: "Parent of Class VIII Student",
+              rating: 5
+            },
+            {
+              quote: "We love how BBM balances hands-on play, fine motor handwriting skills, and Color Days with regulated screen time for pre-primary kids. My daughter loves coming to school every morning!",
+              author: "Smt. Anitha Reddy",
+              relation: "Parent of Pre-Primary Student",
+              rating: 5
+            },
+            {
+              quote: "With 30 years of academic legacy and daily Spoken English, Karate, and Chess coaching, BBM nurtures children intellectually, physically, and morally. Truly Khammam's best school!",
+              author: "Sri V. Mahesh Garu",
+              relation: "Parent of Class X Topper",
+              rating: 5
+            }
+          ].map((item, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.1 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-[2.5rem] p-8 border border-border shadow-lg flex flex-col justify-between space-y-6 hover:shadow-2xl transition-all"
+            >
+              <div className="space-y-4">
+                <div className="flex items-center gap-1 text-yellow-400">
+                  {[...Array(item.rating)].map((_, i) => (
+                    <Star key={i} size={18} fill="currentColor" />
+                  ))}
+                </div>
+                <p className="text-slate-700 text-sm leading-relaxed italic">
+                  "{item.quote}"
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-100 flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-primary/10 text-primary font-black flex items-center justify-center text-base">
+                  {item.author[0]}
+                </div>
+                <div>
+                  <h4 className="font-extrabold text-sm text-slate-900">{item.author}</h4>
+                  <p className="text-xs text-muted-foreground font-medium">{item.relation}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       {/* Bus Facility Section */}
       <section className="max-w-7xl mx-auto px-4">
         <div className="relative group overflow-hidden rounded-[2rem] md:rounded-[4rem] bg-slate-900 text-white p-8 md:p-16">
@@ -553,6 +1153,62 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ❓ FREQUENTLY ASKED QUESTIONS (FAQ) SECTION */}
+      <section className="max-w-7xl mx-auto px-4 space-y-12">
+        <div className="text-center space-y-4 max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-bold uppercase tracking-wider">
+            <HelpCircle size={16} />
+            Common Enquiries
+          </div>
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
+            Find quick answers to common questions about admissions, academics, foundation programs, and campus activities.
+          </p>
+        </div>
+
+        <div className="max-w-4xl mx-auto space-y-4">
+          {[
+            {
+              q: "What grade levels does BBM High School offer?",
+              a: "BBM High School offers comprehensive education from Pre-Primary (Nursery, LKG, UKG) up to Class X (SSC Board), with specialized IIT & Medical Foundation coaching integrated for Classes VI to IX."
+            },
+            {
+              q: "How does the IIT & Basic Foundation Programme work?",
+              a: "Our IIT Foundation Programme for Classes VI to IX provides concept-based coaching in Mathematics, Physics, Chemistry, and Logical Reasoning. It features regular practice tests, worksheets, doubt-clearing sessions, and step-by-step study material to prepare students for JEE, NTSE, Olympiads, and scholarship exams."
+            },
+            {
+              q: "What is unique about BBM's Pre-Primary curriculum?",
+              a: "Our Pre-Primary program is driven by experiential learning ('learning by doing'), combining objective-driven cognitive activities with games, Color Days, core literacy, fine motor handwriting skills, and regulated, age-appropriate screen time."
+            },
+            {
+              q: "What extra-curricular and co-curricular activities are taught?",
+              a: "Students participate in daily Spoken English sessions for communication confidence, Karate self-defence training, Chess coaching for strategic thinking, Science Fairs, Exhibitions, Debates, Quizzes, Art, Craft, Dance, Drama, and National Festival celebrations."
+            },
+            {
+              q: "Does the school provide safe transportation across Khammam?",
+              a: "Yes! BBM High School operates a well-connected, safe school bus network covering 10+ major routes across Khammam city and surrounding suburbs."
+            }
+          ].map((faq, index) => (
+            <details key={index} className="group bg-white rounded-3xl border border-border shadow-sm overflow-hidden transition-all">
+              <summary className="p-6 font-extrabold text-base md:text-lg text-slate-900 cursor-pointer flex items-center justify-between gap-4 select-none hover:text-primary transition-colors">
+                <span className="flex items-center gap-3">
+                  <span className="w-8 h-8 rounded-full bg-primary/10 text-primary text-xs font-black flex items-center justify-center shrink-0">
+                    Q{index + 1}
+                  </span>
+                  {faq.q}
+                </span>
+                <ChevronDown className="text-muted-foreground group-open:rotate-180 transition-transform shrink-0" size={20} />
+              </summary>
+              <div className="px-6 pb-6 pt-2 text-sm md:text-base text-slate-600 leading-relaxed border-t border-slate-100 pl-16">
+                {faq.a}
+              </div>
+            </details>
+          ))}
         </div>
       </section>
 

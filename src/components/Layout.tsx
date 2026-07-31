@@ -208,10 +208,27 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </Button>
             </div>
 
-            {/* Mobile Menu Toggle */}
-            <button className="lg:hidden p-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              {isMenuOpen ? <X /> : <Menu />}
-            </button>
+            {/* Mobile Menu Toggle & About Link */}
+            <div className="lg:hidden flex items-center gap-2">
+              <Link
+                to="/about"
+                onClick={() => setIsMenuOpen(false)}
+                className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all border ${
+                  location.pathname === '/about'
+                    ? 'bg-primary text-white border-primary shadow-sm'
+                    : 'bg-primary/10 text-primary border-primary/20 hover:bg-primary hover:text-white'
+                }`}
+              >
+                About
+              </Link>
+              <button 
+                className="p-2 text-foreground hover:text-primary transition-colors" 
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label="Toggle Menu"
+              >
+                {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
+              </button>
+            </div>
           </nav>
 
           {/* Mobile Nav */}

@@ -1,10 +1,11 @@
-import { Enquiry, Admission, Result, GalleryItem } from '../types';
+import { Enquiry, Admission, Result, GalleryItem, SiteMediaItem } from '../types';
 
 const STORAGE_KEYS = {
   ENQUIRIES: 'bbm_enquiries',
   ADMISSIONS: 'bbm_admissions',
   RESULTS: 'bbm_results',
   GALLERY: 'bbm_gallery',
+  MEDIA: 'bbm_site_media',
   AUTH: 'bbm_auth',
 };
 
@@ -44,6 +45,18 @@ const DEFAULT_GALLERY: GalleryItem[] = [
     imageUrl: "https://picsum.photos/seed/indep/800/600",
     createdAt: new Date().toISOString()
   }
+];
+
+const DEFAULT_SITE_MEDIA: SiteMediaItem[] = [
+  { id: 'sm1', title: 'Official School Logo', category: 'Logo & Branding', imageUrl: '/logo.png', description: 'Primary BBM High School Logo badge used across header and official documents', createdAt: new Date().toISOString() },
+  { id: 'sm2', title: 'BBM Main Campus View', category: 'Hero & Campus', imageUrl: '/school.jpeg', description: 'Main campus building view in Naidupet, Khammam', createdAt: new Date().toISOString() },
+  { id: 'sm3', title: 'IIT Foundation Banner', category: 'Programs & Pre-Primary', imageUrl: '/iit_coaching.png', description: 'Coaching banner for Class VI-IX IIT Foundation program', createdAt: new Date().toISOString() },
+  { id: 'sm4', title: 'Medical Foundation Banner', category: 'Programs & Pre-Primary', imageUrl: '/medical_coaching.png', description: 'Medical Foundation guidance banner for competitive exams', createdAt: new Date().toISOString() },
+  { id: 'sm5', title: 'Director - Sri G. Kantha Rao', category: 'Leadership & Staff', imageUrl: '/sir.jpeg', description: 'Gurram Kantha Rao Garu - Director of BBM High School', createdAt: new Date().toISOString() },
+  { id: 'sm6', title: 'Correspondent - Smt. G. Nagamani', category: 'Leadership & Staff', imageUrl: '/madam.jpeg', description: 'Gurram Nagamani Garu - Correspondent of BBM High School', createdAt: new Date().toISOString() },
+  { id: 'sm7', title: 'Gents Faculty Team', category: 'Leadership & Staff', imageUrl: '/gents.jpeg', description: 'Gents teaching staff and academic department leads', createdAt: new Date().toISOString() },
+  { id: 'sm8', title: 'Ladies Faculty Team', category: 'Leadership & Staff', imageUrl: '/ladies.jpeg', description: 'Ladies teaching staff and early childhood educators', createdAt: new Date().toISOString() },
+  { id: 'sm9', title: 'Transportation Bus Fleet', category: 'Transportation & Bus', imageUrl: '/bus.jpeg', description: 'Safe school transportation bus serving all routes across Khammam', createdAt: new Date().toISOString() },
 ];
 
 const DEFAULT_RESULTS: Result[] = [
@@ -298,6 +311,116 @@ export const storage = {
     }
     const localItems = get<GalleryItem[]>(STORAGE_KEYS.GALLERY, DEFAULT_GALLERY);
     set(STORAGE_KEYS.GALLERY, localItems.filter(i => i.id !== id));
+  },
+
+  getSiteMedia: async (): Promise<SiteMediaItem[]> => {
+    try {
+      const response = await fetch('/api/media');
+      if (response.ok) {
+        const data = await response.json();
+        if (Array.isArray(data) && data.length > 0) {
+          set(STORAGE_KEYS.MEDIA, data);
+          return data;
+        }
+      }
+    } catch (error) {
+      console.warn('Backend API unavailable, using localStorage for site media');
+    }
+    return get<SiteMediaItem[]>(STORAGE_KEYS.MEDIA, DEFAULT_SITE_MEDIA);
+  },
+
+  saveSiteMediaItem: async (item: Omit<SiteMediaItem, 'id' | 'createdAt'>, file?: File): Promise<SiteMediaItem> => {
+    let imageUrl = item.imageUrl || '/logo.png';
+    if (file) {
+      imageUrl = await fileToBase64(file);
+    }
+
+    try {
+      const formData = new FormData();
+      formData.append('title', item.title);
+      formData.append('category', item.category);
+      formData.append('description', item.description);
+      if (file) formData.append('image', file);
+
+      const response = await fetch('/api/media', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        const serverItem = await response.json();
+        const localItems = get<SiteMediaItem[]>(STORAGE_KEYS.MEDIA, DEFAULT_SITE_MEDIA);
+        set(STORAGE_KEYS.MEDIA, [serverItem, ...localItems.filter(i => i.id !== serverItem.id)]);
+        return serverItem;
+      }
+    } catch (error) {
+      console.warn('Backend API save media failed, saving to localStorage:', error);
+    }
+
+    const localItems = get<SiteMediaItem[]>(STORAGE_KEYS.MEDIA, DEFAULT_SITE_MEDIA);
+    const newItem: SiteMediaItem = {
+      id: 'sm_' + Date.now().toString(),
+      title: item.title,
+      category: item.category,
+      imageUrl,
+      description: item.description,
+      createdAt: new Date().toISOString(),
+    };
+    set(STORAGE_KEYS.MEDIA, [newItem, ...localItems]);
+    return newItem;
+  },
+
+  updateSiteMediaItem: async (id: string, item: Partial<Omit<SiteMediaItem, 'id' | 'createdAt'>>, file?: File): Promise<SiteMediaItem> => {
+    let imageUrl: string | undefined;
+    if (file) {
+      imageUrl = await fileToBase64(file);
+    }
+
+    try {
+      const formData = new FormData();
+      if (item.title) formData.append('title', item.title);
+      if (item.category) formData.append('category', item.category);
+      if (item.description) formData.append('description', item.description);
+      if (file) formData.append('image', file);
+
+      const response = await fetch(`/api/media/${id}`, {
+        method: 'PUT',
+        body: formData,
+      });
+
+      if (response.ok) {
+        const serverItem = await response.json();
+        const localItems = get<SiteMediaItem[]>(STORAGE_KEYS.MEDIA, DEFAULT_SITE_MEDIA);
+        set(STORAGE_KEYS.MEDIA, localItems.map(i => i.id === id ? serverItem : i));
+        return serverItem;
+      }
+    } catch (error) {
+      console.warn('Backend API update media failed, updating in localStorage:', error);
+    }
+
+    const localItems = get<SiteMediaItem[]>(STORAGE_KEYS.MEDIA, DEFAULT_SITE_MEDIA);
+    const existing = localItems.find(i => i.id === id);
+    const updatedItem: SiteMediaItem = {
+      id,
+      title: item.title || existing?.title || 'Untitled Image',
+      category: item.category || existing?.category || 'General',
+      description: item.description || existing?.description || '',
+      imageUrl: imageUrl || item.imageUrl || existing?.imageUrl || '/logo.png',
+      createdAt: existing?.createdAt || new Date().toISOString(),
+    };
+
+    set(STORAGE_KEYS.MEDIA, localItems.map(i => i.id === id ? updatedItem : i));
+    return updatedItem;
+  },
+
+  deleteSiteMediaItem: async (id: string): Promise<void> => {
+    try {
+      await fetch(`/api/media/${id}`, { method: 'DELETE' });
+    } catch (error) {
+      console.warn('Backend API delete media failed, deleting from localStorage:', error);
+    }
+    const localItems = get<SiteMediaItem[]>(STORAGE_KEYS.MEDIA, DEFAULT_SITE_MEDIA);
+    set(STORAGE_KEYS.MEDIA, localItems.filter(i => i.id !== id));
   },
 
   isAdminLoggedIn: () => !!localStorage.getItem(STORAGE_KEYS.AUTH),

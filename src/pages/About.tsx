@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Target, Heart, Shield, Award, Users, BookOpen, Microscope, Music, Zap, Globe, Sparkles } from 'lucide-react';
+import { Target, Heart, Shield, Award, Users, BookOpen, Microscope, Music, Zap, Globe, Sparkles, GraduationCap, Brain, CheckCircle2, Swords, Trophy, Feather, Tv, Palette, MessageSquare } from 'lucide-react';
 
 const values = [
   { icon: Heart, title: 'Respect', desc: 'Valuing diversity and treating everyone with dignity and empathy.' },
@@ -60,6 +60,225 @@ export default function About() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Detailed Educational & Activity Programs (After Our Foundation) */}
+      <section className="max-w-7xl mx-auto px-4 mt-24 space-y-16">
+        <div className="text-center space-y-4 max-w-3xl mx-auto">
+          <div className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-bold uppercase tracking-wider">
+            Academic & Extracurricular Ecosystem
+          </div>
+          <h2 className="text-3xl md:text-5xl font-black leading-tight">
+            Detailed Academic & Co-Curricular Excellence
+          </h2>
+          <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
+            At BBM High School, we combine early childhood experiential learning with a rigorous IIT Foundation curriculum and a rich spectrum of co-curricular activities.
+          </p>
+        </div>
+
+        {/* 1. PRE-PRIMARY PROGRAMME DETAILED */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-gradient-to-br from-amber-500/10 via-orange-500/5 to-yellow-500/10 rounded-[3rem] p-8 md:p-14 border border-amber-500/20 shadow-xl space-y-8"
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-14 h-14 rounded-2xl bg-amber-500 text-slate-950 flex items-center justify-center font-bold shadow-md">
+              <GraduationCap size={32} />
+            </div>
+            <div>
+              <span className="text-xs font-black text-amber-700 uppercase tracking-widest">Early Childhood Base</span>
+              <h3 className="text-2xl md:text-4xl font-extrabold text-slate-900">Pre-Primary Programme</h3>
+            </div>
+          </div>
+
+          <div className="space-y-4 text-slate-700 leading-relaxed text-base md:text-lg">
+            <p>
+              BBM High School offers a robust foundational curriculum driven by an experiential learning methodology. Our early childhood program for pre-primary emphasizes cognitive development through objective-driven activities and systematic academic revisions.
+            </p>
+            <p>
+              Discover a world of learning and joy at BBM High School! We believe little hands learn best by doing, blending everyday lessons with exciting games and hands-on activities. From building neat handwriting and strong reading skills to celebrating vibrant Color Days, we keep our classrooms buzzing with energy.
+            </p>
+            <p>
+              We maintain a rigorous focus on core literacy, fine motor handwriting skills, and structured reinforcement drills. Furthermore, technology is integrated responsibly through regulated, age-appropriate screen time, creating a balanced, high-achieving environment for young learners. Through gentle drills, thorough revisions, and carefully balanced, interactive screen time for pre-primary, we ensure your child builds a strong, happy foundation for the future!
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+            {[
+              { label: 'Experiential Learning', sub: 'Hands-on games & activities' },
+              { label: 'Core Literacy & Handwriting', sub: 'Fine motor skill drills' },
+              { label: 'Balanced Screen Time', sub: 'Regulated & age-appropriate' },
+              { label: 'Vibrant Environment', sub: 'Color Days & story revisions' }
+            ].map(item => (
+              <div key={item.label} className="p-4 bg-white/80 rounded-2xl border border-amber-200 shadow-sm space-y-1">
+                <div className="font-bold text-amber-900 text-sm flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-amber-600 shrink-0" />
+                  {item.label}
+                </div>
+                <div className="text-xs text-muted-foreground pl-6">{item.sub}</div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* 2. IIT & BASIC FOUNDATION PROGRAMME DETAILED */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-slate-950 text-white rounded-[3rem] p-8 md:p-14 border border-indigo-900 shadow-2xl space-y-10 relative overflow-hidden"
+        >
+          <div className="flex flex-col lg:flex-row gap-8 items-start justify-between">
+            <div className="space-y-4 lg:w-2/3">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-400/10 text-yellow-400 font-bold text-xs uppercase tracking-widest border border-yellow-400/30">
+                <Brain size={16} />
+                Classes VI to IX Special Coaching
+              </div>
+              <h3 className="text-3xl md:text-5xl font-black text-white tracking-tight">
+                IIT & Basic Foundation Programme
+              </h3>
+              <div className="inline-block bg-yellow-400 text-slate-950 font-black px-4 py-1.5 rounded-xl text-sm md:text-base">
+                📍 Vision: "Building a Strong Foundation for a Bright Future."
+              </div>
+              <p className="text-slate-300 leading-relaxed text-base md:text-lg">
+                At BBM High School, our IIT Foundation Programme for Classes VI to IX is designed to build a strong academic foundation and develop analytical thinking from an early age. We are proud to announce that BBM High School is successfully conducting the IIT Foundation Programme to prepare students for school excellence and competitive examinations.
+              </p>
+            </div>
+
+            <div className="lg:w-1/3 w-full bg-slate-900 p-6 rounded-3xl border border-slate-800 space-y-4">
+              <h4 className="font-bold text-yellow-400 text-base">🎯 Our Vision & Goal</h4>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Our IIT Foundation Programme aims to nurture young minds by strengthening their conceptual understanding, fostering curiosity, and preparing students for future academic success and competitive examinations while ensuring excellence in their regular school studies.
+              </p>
+              <div className="pt-2 border-t border-slate-800">
+                <span className="text-xs font-bold text-yellow-400">Core Subjects:</span>
+                <p className="text-xs text-slate-200 font-semibold mt-1">Mathematics • Physics • Chemistry • Logical Reasoning</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-6">
+            <h4 className="text-xl font-bold text-yellow-400 flex items-center gap-2">
+              <Sparkles size={20} /> Complete Programme Highlights:
+            </h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {[
+                'Comprehensive coaching in Mathematics, Physics, Chemistry, and Logical Reasoning.',
+                'Concept-based learning aligned with the school curriculum.',
+                'Focus on developing problem-solving and critical thinking skills.',
+                'Experienced and dedicated faculty with personalised guidance.',
+                'Regular practice tests, worksheets, and performance analysis.',
+                'Special doubt-clearing sessions for individual attention.',
+                'Activity-based learning with practical applications of concepts.',
+                'Preparation for competitive examinations such as JEE, NTSE, Olympiads, and other scholarship examinations.',
+                'Continuous assessment and progress reports shared with parents.',
+                'Encouragement of scientific temperament, creativity, and innovation.',
+                'Well-planned study material designed for step-by-step concept mastery.',
+                'Individual mentoring to help every student achieve academic excellence.',
+                'Motivation sessions to build confidence, discipline, and a competitive spirit.'
+              ].map((highlight, idx) => (
+                <div key={idx} className="flex items-start gap-3 p-4 rounded-2xl bg-slate-900/80 border border-slate-800">
+                  <span className="w-6 h-6 rounded-lg bg-yellow-400/20 text-yellow-300 font-extrabold flex items-center justify-center text-xs shrink-0 mt-0.5">
+                    ✓
+                  </span>
+                  <span className="text-xs md:text-sm text-slate-200 leading-relaxed">{highlight}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* 3. BEYOND TEXTBOOKS & HOLISTIC ACTIVITIES DETAILED */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-white rounded-[3rem] p-8 md:p-14 border border-border shadow-xl space-y-10"
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-14 h-14 rounded-2xl bg-primary text-white flex items-center justify-center font-bold shadow-md">
+              <Trophy size={32} />
+            </div>
+            <div>
+              <span className="text-xs font-black text-primary uppercase tracking-widest">Co-Curricular & Character Building</span>
+              <h3 className="text-2xl md:text-4xl font-extrabold text-slate-900">Beyond Textbooks – Holistic Activities</h3>
+            </div>
+          </div>
+
+          <div className="space-y-4 text-slate-700 leading-relaxed text-base md:text-lg">
+            <p>
+              At BBM High School, learning extends beyond textbooks through a variety of engaging activities. We provide a balanced education that promotes academic excellence and character development. Our activity-based approach ensures the holistic development of every child, encouraging every student to discover, develop, and showcase their unique talents.
+            </p>
+            <p>
+              BBM High School creates a vibrant learning environment where students grow academically, socially, emotionally, and morally. We encourage every student to participate actively in all school activities!
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
+            {[
+              {
+                title: 'Daily Spoken English',
+                desc: 'Students participate in daily Spoken English sessions to build confidence and communication skills.',
+                icon: MessageSquare
+              },
+              {
+                title: 'Karate Training',
+                desc: 'Karate training develops self-confidence, physical agility, discipline, and essential self-defence skills.',
+                icon: Swords
+              },
+              {
+                title: 'Chess Coaching',
+                desc: 'Chess coaching enhances logical thinking, patience, and strategic planning from an early age.',
+                icon: Brain
+              },
+              {
+                title: 'Science & Math Activities',
+                desc: 'Regular science and mathematics activities encourage critical thinking, problem-solving, and scientific inquiry.',
+                icon: Microscope
+              },
+              {
+                title: 'Science Fairs & Exhibitions',
+                desc: 'Science fairs, exhibitions, and project-based learning promote creativity and innovation among students.',
+                icon: Sparkles
+              },
+              {
+                title: 'Literary Competitions',
+                desc: 'Quiz, essay writing, debate, and elocution competitions enhance knowledge, public speaking, and communication skills.',
+                icon: Trophy
+              },
+              {
+                title: 'Creative Writing & Reading',
+                desc: 'Creative writing, storytelling, and reading programmes help students develop language proficiency.',
+                icon: Feather
+              },
+              {
+                title: 'Art, Craft, Dance & Drama',
+                desc: 'Art, craft, dance, and drama provide rich opportunities for students to express creativity and artistic talent.',
+                icon: Palette
+              },
+              {
+                title: 'Leadership & Sports',
+                desc: 'Leadership programmes nurture decision-making skills. Sports and physical education promote fitness and teamwork.',
+                icon: Target
+              },
+              {
+                title: 'Environmental & Culture',
+                desc: 'Environmental awareness programmes inspire sustainability. Celebrations of national festivals promote patriotism & cultural values.',
+                icon: Globe
+              }
+            ].map(act => (
+              <div key={act.title} className="p-6 rounded-3xl bg-secondary/30 border border-border space-y-3 hover:bg-primary hover:text-white transition-colors duration-300 group">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 group-hover:bg-white/20 flex items-center justify-center text-primary group-hover:text-white">
+                  <act.icon size={20} />
+                </div>
+                <h4 className="font-bold text-lg">{act.title}</h4>
+                <p className="text-xs text-muted-foreground group-hover:text-white/80 leading-relaxed">{act.desc}</p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
       </section>
 
       {/* Vision & Mission */}

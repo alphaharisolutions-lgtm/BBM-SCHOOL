@@ -89,7 +89,6 @@ export default function Admissions() {
             <h3 className="text-xl font-bold">Admission Process</h3>
             <ul className="space-y-4">
               {[
-                'Fill the online application form',
                 'Visit the school for a campus tour',
                 'Interaction with the Principal',
                 'Document verification & Fee payment'
