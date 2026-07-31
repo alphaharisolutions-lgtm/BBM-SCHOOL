@@ -19,7 +19,7 @@ export default function Login() {
       toast.success('Login successful');
       navigate('/admin/dashboard');
     } else {
-      toast.error('Invalid credentials. Try admin@bbm.com / admin123');
+      toast.error('Invalid email or password');
     }
   };
 
@@ -74,10 +74,6 @@ export default function Login() {
             <Button type="submit" className="w-full h-12 rounded-xl font-bold text-lg">
               Sign In
             </Button>
-            
-            <p className="text-center text-xs text-muted-foreground">
-              Demo Credentials: admin@bbm.com / admin123
-            </p>
           </form>
         </CardContent>
       </Card>
